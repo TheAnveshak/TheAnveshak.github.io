@@ -11,54 +11,53 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* **Bachelor of Chemical Engineering** (Minor: Artificial Intelligence & Machine Learning)  
+  *Institute of Chemical Technology (ICT), Mumbai, India* | 2023 – 2027  
+  * **CGPA:** 8.23 / 10  
+  * **Undergraduate Research Thesis:** *Valorization of $\text{CO}_2$ to lower olefins via One-Pot Bifunctional Catalysis* (Advisor: Prof. G. D. Yadav)
 
-Work experience
+Research Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **Indian Institute of Technology (IIT), Bombay** | May 2026 – Present  
+  *Overlapping Graph Decomposition for Fault-Tolerant Distributed MPC*  
+  *Advisor:* Prof. Sujit Jogwar  
+  * Formulated an overlapping network decomposition scheme for integrated process plants via Genetic Algorithm on weighted equation graphs.
+  * Implemented an iterative Distributed MPC coordinator in Python using `do_mpc` and IPOPT, resolving coupled nonlinear subproblems via trajectory broadcasting and input-freezing protocols.
+  * Validated dynamic fault tolerance on a multiple-recycle benzene alkylation benchmark, achieving zero tracking degradation (identical ISE) with a 30.8% solve-time reduction under sub-controller failure.
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **Institute of Chemical Technology (ICT), Mumbai** | Sept 2025 – Present  
+  *Adaptive Neural Surrogates & Inverse Optimization for Dynamical Systems*  
+  *Advisors:* Prof. Ajit Kumar & Dr. Shailesh Kumar  
+  * Built neural network surrogate models using error-driven adaptive spatial sampling, applying quantile-based error flagging and PCA-aligned subgrids to resolve steep response gradients with minimal training points.
+  * Implemented Physics-Informed Neural Networks (PINNs) in PyTorch to solve forward dynamics and inverse parameter discovery (NSE flow fields) via automatic differentiation of differential residuals.
+  * Formulated a gradient-driven inverse optimization framework utilizing Moore-Penrose pseudoinverse to optimize inputs directly on learned neural landscapes.
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+* **Institute of Chemical Technology (ICT), Mumbai** | Dec 2024 – July 2025  
+  *Multiphase CFD*  
+  *Advisor:* Prof. Ashwin W. Patwardhan  
+  * Studied fluid mechanics, turbulence modeling, and CFD for incompressible single- and multiphase systems, performing numerical simulations using OpenFOAM.
+  * Simulated transient bubble hydrodynamics and interfacial dynamics for immiscible systems (benzene/toluene rising in water) using the Volume of Fluid (`interFoam`) method in OpenFOAM.
+
+Academic Achievements
+======
+* **Graduate Aptitude Test in Engineering (GATE) 2026:**
+  * **AIR 76** in Chemical Engineering (CH) among 14,070 candidates across India.
+  * **AIR 370** in Engineering Sciences (XE: Engineering Mathematics, Fluid Mechanics, Thermodynamics).
+* **iGEM Competition 2025 (Gold Medal):** Co-developed DNA-damage repair (Belov model) model translation and programming.
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **Programming:** Python (PyTorch, NumPy, SciPy, CasADi), C++
+* **Scientific Computing:** Numerical methods, optimization, Neural Networks, CFD, HPC
+* **Tools & Frameworks:** OpenFOAM, Linux, Bash, Git, LaTeX, DWSIM, Simulink
 
-Publications
+Selected Projects
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
+* **Thermodynamics:** Developed a Python program for Total Annualized Cost (TAC) minimization vs. operating pressure for a binary distillation column using NRTL-regressed VLE data.
+* **Optimization:** Implemented direct search methods in SageMath, evaluated Sequential Quadratic Programming (SQP) variants, and benchmarked L-BFGS optimization implementations in Python.
+* **Data Analytics & ML:** Performed exploratory data analysis and regression modeling on geospatial temperature datasets for climate trend analysis, along with spatial analysis of geochemical data using unsupervised learning.
+
+Leadership & Competitions
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* **Gas-Inducing Impeller Design Competition (Jan 2026):** Secured 1st place among 7 teams at Tinkerer's Lab, ICT Mumbai; fabricated a 92 mm impeller delivering an efficiency of $1.02 \times 10^{-5}\text{ mol L}^{-1}\text{s}^{-1}\text{W}^{-1}$.
+* **Codathon - Vortex 13.0 Tech Fest (Jan 2026):** Designed the technical problem statements and coordinated evaluation pipelines for the campus-wide coding competition.
