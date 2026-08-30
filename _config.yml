@@ -23,7 +23,7 @@ repository               : "TheAnveshak/TheAnveshak.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "/images/Arya_fourpillars_passport.png"
+  avatar           : "images/Arya_fourpillars_passport.png"
   name             : "Arya Rane"
   pronouns         : # example: "she/her"  
   bio              : "UG in Chemical Engineering @ ICT Mumbai"
