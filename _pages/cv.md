@@ -15,7 +15,7 @@ Education
 * **Bachelor of Chemical Engineering** (Minor: Artificial Intelligence & Machine Learning)  
   *Institute of Chemical Technology (ICT), Mumbai, India* | 2023 – 2027  
   * **CGPA:** 8.23 / 10  
-  * **Undergraduate Research Thesis:** *Valorization of $\text{CO}_2$ to lower olefins via One-Pot Bifunctional Catalysis* (Advisor: Prof. G. D. Yadav)
+  * **Undergraduate Research Thesis:** *Valorization of CO<sub>2</sub> to lower olefins via One-Pot Bifunctional Catalysis* (Advisor: Prof. G. D. Yadav)
 
 Research Experience
 ======
@@ -60,5 +60,5 @@ Selected Projects
 
 Leadership & Competitions
 ======
-* **Gas-Inducing Impeller Design Competition (Jan 2026):** Secured 1st place among 7 teams at Tinkerer's Lab, ICT Mumbai; fabricated a 92 mm impeller delivering an efficiency of $1.02 \times 10^{-5}\text{ mol L}^{-1}\text{s}^{-1}\text{W}^{-1}$.
+* **Gas-Inducing Impeller Design Competition (Jan 2026):** Secured 1st place among 7 teams at Tinkerer's Lab, ICT Mumbai; fabricated a 92 mm impeller delivering an efficiency of 1.02 × 10<sup>-5</sup> mol L<sup>-1</sup> s<sup>-1</sup> W<sup>-1</sup>.
 * **Codathon - Vortex 13.0 Tech Fest (Jan 2026):** Designed the technical problem statements and coordinated evaluation pipelines for the campus-wide coding competition.
