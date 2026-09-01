@@ -11,7 +11,7 @@ redirect_from:
 {% include base_path %}
 
 <div style="margin-bottom: 2em; display: flex; align-items: center; justify-content: space-between;">
-  <span><strong>Arya Rane</strong> — Academic & Research Record</span>
+  <span><strong>Arya Rane</strong> --- Academic & Research Record</span>
   <a href="{{ base_path }}/files/AryaRane_3_5.pdf" class="btn btn--primary" target="_blank" style="margin: 0; padding: 0.4em 1em; font-size: 0.85em; text-decoration: none;">
     Download PDF CV
   </a>
@@ -21,7 +21,7 @@ redirect_from:
 
 ## Education
 
-**Bachelor of Chemical Engineering** <span style="float: right; color: #777;">2023 – 2027</span>  
+**Bachelor of Chemical Engineering** <span style="float: right; color: #777;">2023 -- 2027</span>  
 *Institute of Chemical Technology (ICT), Mumbai*  
 * **Minor:** Artificial Intelligence & Machine Learning
 * **CGPA:** 8.23 / 10
@@ -32,7 +32,7 @@ redirect_from:
 
 ## Research Experience
 
-**Indian Institute of Technology (IIT), Bombay** <span style="float: right; color: #777;">May 2026 – Present</span>  
+**Indian Institute of Technology (IIT), Bombay** <span style="float: right; color: #777;">May 2026 -- Present</span>  
 *Overlapping Graph Decomposition for Fault-Tolerant Distributed MPC*  
 *Advisor: Prof. Sujit Jogwar*
 
@@ -42,22 +42,41 @@ redirect_from:
 
 <br>
 
-**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Sept 2025 – Present</span>  
+**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Sept 2025 -- Present</span>  
 *Adaptive Neural Surrogates & Inverse Optimization for Dynamical Systems*  
 *Advisors: Prof. Ajit Kumar & Dr. Shailesh Kumar*
 
 * Built neural network surrogate models using error-driven adaptive spatial sampling, applying quantile-based error flagging and PCA-aligned subgrids to resolve steep response gradients with minimal training points.
-* Implemented Physics-Informed Neural Networks (PINNs) in PyTorch to solve forward dynamics and inverse parameter discovery (NSE flow fields) via automatic differentiation of differential residuals.
+* Implemented Physics-Informed Neural Networks (PINNs) in PyTorch to solve forward dynamics and inverse parameter discovery (NSE cylinder-wake dynamics) via automatic differentiation of differential residuals.
 * Formulated a gradient-driven inverse optimization framework utilizing Moore-Penrose pseudoinverse to optimize inputs directly on learned neural landscapes.
 
 <br>
 
-**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Dec 2024 – July 2025</span>  
+**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Dec 2024 -- July 2025</span>  
 *Multiphase CFD & Interfacial Hydrodynamics*  
 *Advisor: Prof. Ashwin W. Patwardhan*
 
 * Studied fluid mechanics, turbulence modeling, and CFD for incompressible single- and multiphase systems, performing numerical simulations in OpenFOAM.
 * Simulated transient bubble hydrodynamics and interfacial dynamics for immiscible systems (benzene/toluene rising in water) using the Volume of Fluid (`interFoam`) method.
+
+<br>
+
+**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Sept 2025 -- Present</span>  
+*CO\\(_2\\) Valorization to Lower Olefins via One-Pot Bifunctional Catalysis*  
+*Advisor: Prof. Ganapati D. Yadav*
+
+* Prepared and tested bifunctional catalysts for CO\\(_2\\) conversion to lower olefins, studying catalyst composition and reaction conditions.
+* Performed product characterization and analyzed conversion, selectivity, and reaction performance.  
+
+<br>
+
+**Institute of Chemical Technology (ICT), Mumbai** <span style="float: right; color: #777;">Feb 2024 -- Oct 2024</span>  
+*Cryptography & Number Theory*  
+*Advisor: Prof. Vikram Aithal*
+
+* Studied number-theoretic and geometric foundations of modern cryptography, including finite fields, elliptic curves, and the discrete logarithm problem.
+* Implemented RSA, elliptic-curve cryptography, Diffie-Hellman, and ElGamal in Python.
+* Developed an independent cryptographic encoding and decoding scheme inspired by Hamming codes.
 
 ---
 
