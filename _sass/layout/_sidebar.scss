@@ -157,7 +157,7 @@
     max-width: 175px;
     // border-radius: 50%;
      border-radius: 8px;
-     aspect-ratio: 4 / 5;
+     aspect-ratio: 3 / 4;
     object-fit: cover;
 
     @include breakpoint($large) {
