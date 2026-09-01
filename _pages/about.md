@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I just like the point at which a problem stops yielding to intuition and starts demanding that you actually understand it.
+I just like the point at which a problem stops yielding to intuition and demands that I put it on paper and prove it.
 
 That is probably what drew me towards engineering, and then further towards the mathematics, computation, and physical reasoning underneath it. I keep finding myself interested in dynamical systems, fluid mechanics, process systems, optimization, and machine learning. I like these subjects for different reasons, but I usually end up happiest when there is enough mathematics underneath them to keep me occupied.
 
