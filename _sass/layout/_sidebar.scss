@@ -155,7 +155,10 @@
 
   img {
     max-width: 175px;
-    border-radius: 50%;
+    // border-radius: 50%;
+     border-radius: 8px;
+     aspect-ratio: 1 / 1; /* optional: keeps it square rather than vertically stretched */
+    object-fit: cover;
 
     @include breakpoint($large) {
       padding: 5px;
