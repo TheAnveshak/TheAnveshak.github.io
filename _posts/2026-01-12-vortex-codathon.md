@@ -37,21 +37,23 @@ In modern engineering workflows, calling an optimization routine or computing a 
 
 ---
 
-### 2. Secrecy by Structure: Elliptic Curves Over \\(\mathbb{F}_{23}\\) (R2, Q2)
+### 2. Secrecy by Structure: Elliptic Curves Over \(\mathbb{F}_{23}\) (R2, Q2)
 
-Set in an Orwellian regime where floating-point drift and continuity are outlawed, "Big Brother & The Finite Curve" forces solvers to compute cryptographic handshakes on a discrete grid:
+We tend to assume the physical world is continuous-that numbers stretch indefinitely, signals drift smoothly, and spaces yield to continuous intuition. But real processors truncate, sensors round, and computation on bare metal is stubbornly discrete. 
 
-$$\mathcal{E}: y^2 \equiv x^3 - 19x + 84 \pmod{23} \quad$$
+In **"Big Brother & The Finite Curve,"** Winston and Julia abandon continuous channels and encode coordinates onto a discrete group lattice defined by:
 
-* **The Problem:** Winston and Julia coordinate meeting locations by adding points \\(P_W\\) and \\(P_J\\) using the curve group law to yield \\(P_M\\). Solvers had to:
-  1. Determine valid coordinate pairs given the Oracle's output point \\((16, 9\\).
-  2. Compute \\(P_M = P_W + P_J\\) directly when Winston is at \\((3, 10)\\) and Julia is at \\((18, 13)\\).
-* **The Mechanism:** On the real plane \\(\mathbb{R}^2\\), point addition draws a line through \\(P\\) and \\(Q\\), finds the third root on the cubic curve, and reflects across the \\(x\\)-axis. Over \\(\mathbb{F}_{23}\\), continuous lines become modular congruences:
+$$\mathcal{E}: y^2 \equiv x^3 - 19x + 84 \pmod{23}$$
 
-$$m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{23} = (y_2 - y_1)(x_2 - x_1)^{p-2} \pmod{23}$$
+They combine their private locations \(P_W\) and \(P_J\) via the curve’s chord-and-tangent group law to yield a meeting coordinate \(P_M = P_W + P_J\). 
 
-$$x_3 = m^2 - x_1 - x_2 \pmod{23}, \quad y_3 = m(x_1 - x_3) - y_1 \pmod{23}$$
+The mathematical point was never the small-scale arithmetic, but the closure of the space:
+* Information from two separate parties merges into a single object.
+* Every operation stays strictly inside the finite set--nothing leaks outside.
+* Knowing \(P_M\) and her own point allows Julia to deduce Winston's location instantly, while an observer seeing only \(P_M\) is left with an unresolved combination.
 
-At \\(p = 23\\), Big Brother can exhaustively tabulate the entire state space. But the structural principle remains: forward point multiplication is fast, while the inverse (the Discrete Logarithm Problem) becomes intractable when scaled to cryptographic primes.
+At \(p = 23\), the world is small enough for Big Brother to tabulate and exhaust every coordinate. But swap \(p = 23\) for a 256-bit prime, and the exact same toy becomes a shield. Forward moves remain trivial; inverting them without a private coordinate becomes computationally impossible. 
+
+This is the intuition behind modern public-key cryptography: not secrecy by hiding, but **secrecy by mathematical structure**--a closed world, a clean group law, and an intractable search space.
 
 ---
