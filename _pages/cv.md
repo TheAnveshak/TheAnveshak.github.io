@@ -116,4 +116,4 @@ redirect_from:
 
 **Codathon — Vortex 13.0 Tech Fest** <span style="float: right; color: #777;">Jan 2026</span>  
 *Lead Coordinator & Problem Setter*
-* Formulated algorithmic problem statements, edge-case test suites, and automated evaluation sandboxes for the annual coding competition.
+* Designed the problem statement, coordinated evaluation and logistics for the coding competition.
