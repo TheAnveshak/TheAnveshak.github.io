@@ -1,7 +1,8 @@
 ---
-title: 'Coupled Hydrodynamics in Gas-Inducing Impellers: Beating the Suspension-Induction Trade-Off'
+title: "Building a Gas-Inducing Impeller (and Winning With It)"
 date: 2026-03-05
 permalink: /posts/2026/03/gas-inducing-impeller-design/
+excerpt: "How to make a stirrer breathe for itself -- and why it still needs a friend to keep solids off the floor."
 tags:
   - Multiphase Transport
   - Fluid Dynamics
@@ -9,87 +10,30 @@ tags:
   - Prototyping
 ---
 
-Gas-inducing contactors (GICs) eliminate external recycle compressors in dead-end, hazardous, or toxic gas reactions (\( \text{H}_2 \), \( \text{O}_2 \), \( \text{CO}_2 \)) by leveraging impeller-driven pressure depression to aspirate gas directly from the reactor headspace into the bulk liquid. Operating becomes non-trivial when the same mechanical drive must simultaneously induce headspace gas and fully suspend heavy, coarse catalyst particles off the tank floor[cite: 1, 2].
+Say you want to react a gas into a liquid -- \\(\text{H}_2\\) for a reduction, \\(\text{Cl}_2\\) for a chlorination. Bubble it through a sparger, right?
 
-At *Reactor Alchemy* (organized by Tinkerers Laboratory, Vortex 13.0, and the Institute Innovation Council at ICT Mumbai, sponsored by Amar Flow Laboratory), teams were tasked with designing and fabricating an impeller (\( D \le 90 \pm 5\text{ mm} \)) inside an unsparged, baffled cylindrical reactor (\( T = 150\text{ mm} \), \( H/T \in [1, 2] \)). The system had to suspend coarse \( 2\text{--}3\text{ mm} \) solid particles while maximizing the rate of reactive mass transfer of \( \text{CO}_2 \) into \( 0.1\text{ M NaOH} \) per unit electrical shaft power:
+Except phase equilibrium won't let you finish the job. At the interface, \\(y_i P = H_i x_i\\). Unless \\(H_i = 0\\) (never) or the liquid-phase reaction is infinitely fast (Hatta \\(\to \infty\\)), some gas always survives the bubble's rise and escapes into the headspace unreacted. A single pass can't strip a gas to zero.
 
-$$ \text{Figure of Merit} = \frac{-d[\text{OH}^-]/dt}{P} \quad \left[ \frac{\text{mol}}{\text{L}\cdot\text{s}\cdot\text{W}} \right] $$
+If that gas is air, vent it and move on. If it's \\(\text{H}_2\\) or \\(\text{Cl}_2\\), venting is money and a hazard leaving through the roof.
 
-Our design (Team 3: Waqqas Sheikh & Arya Rane) took 1st place, achieving a metric of \( 1.02 \times 10^{-5}\text{ mol}\cdot\text{L}^{-1}\cdot\text{s}^{-1}\cdot\text{W}^{-1} \)—outperforming the runner-up by nearly \( 2\times \). Rather than treating this as a black-box prototyping exercise, we formulated the geometry around the multiphase transport scaling developed by Saravanan, Patwardhan, and Joshi (1997) and Patwardhan and Joshi (1999).
+So you recycle the unreacted gas. Simplest fix: catch the vent stream and compress it back to the bottom. Except now you own a compressor -- and if the gas is Chlorine or Phosgene, "compressor room" is not somewhere you want your name on the shift roster.
 
-![Lineup of Manufactured Impellers](/images/posts/reactor-alchemy/lineup-impellers.jpg)
-*Figure 1: Benchmark lineup of competing impellers across all teams (Team 3 at far left).*
+Fine, skip compressing the gas -- pump the liquid instead, drive a second circulation loop through the headspace. Except now you've got a submerged pump sitting in corrosive slurry, and its seals and bearings are on a maintenance calendar you didn't want.
 
----
+Both fixes fail the same way: they treat gas recycle as something bolted onto the reactor. What if the reactor did it to itself? Don't add a pump -- let the impeller be the pump, and let the whole vessel become one closed control volume. Gas leaves the liquid at the top, gets pulled back down through the impeller, and re-enters the same volume it left. Nothing crosses the vessel wall. No external loop, no second machine, no seal to fail. 
 
-### The Fundamental Coupled Paradox: \( N_{CG} \) vs. \( N_{CS} \)
+That's a **Gas-Inducing Contactor (GIC)** -- a dead-end system by design.
 
-In a dual-duty gas-inducing agitated reactor, two opposing hydrodynamic conditions dictate performance:
+Depending on how gas and liquid enter and leave the impeller zone, GICs split into three families: **type 11** (gas only, in and out -- a bare hollow pipe), **type 12** (gas in, gas-liquid dispersion out -- most flotation cells), and **type 22** (two-phase in and out, usually with a stator and standpipe around the impeller). Each trades gas-induction rate against shear, dispersion quality, and mechanical complexity.
 
-#### 1. Onset of Gas Induction (\( N_{CG} \))
-According to Bernoulli's principle, fluid acceleration over the blade tip generates a local static pressure drop. Induction starts when this local depression balances the hydrostatic head above the impeller:
 
-$$ \Delta P_T = \frac{1}{2} \rho_L C_P(\theta) \left[ 2\pi N R (1 - K) \right]^2 - \rho_L g S $$
+Here's the catch: most gas-inducing impellers are terrible solid suspenders. Sit near the surface to keep the induction path short, and the liquid near the tank floor barely moves -- any catalyst or reactant slurry just sits there. The usual fix is a second impeller lower down, purely for suspension, running on the same shaft.
 
-Setting \( \Delta P_T = 0 \) gives the critical induction speed:
+So we built one. Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai -- design and fabricate a gas-inducing impeller under 90 mm, in a 150 mm tank, that suspends 2–3 mm solids and induces gas, tested against \\(\text{CO}_2\\)–\\(\text{NaOH}\\) absorption.
 
-$$ N_{CG} = \frac{1}{2\pi R} \sqrt{\frac{2 g S}{\phi}} $$
+Ours held. A 92 mm hollow-shaft impeller with pitched blades, single geometry doing both jobs as above. Gas induction switched on at \\(N_{CG} = 368\\) RPM; solid suspension followed at \\(N_{CS} = 500\\) RPM -- consistent with the standing assumption in this class of contactor that \\(N_{CS} > N_{CG}\\), since a settled bed needs more liquid momentum near the tank floor than a headspace vortex needs to reach the impeller tip. At that suspension speed, absorption ran at \\(1.26\times10^{-3}\ \text{mol L}^{-1}\text{s}^{-1}\\) drawing 123 W, giving a mass-transfer-to-power ratio of \\(1.02\times10^{-5}\ \text{mol L}^{-1}\text{s}^{-1}\text{W}^{-1}\\) -- 1.8\\(\times\\) the next-best team.
 
-where \( S \) is impeller submergence, \( R \) is impeller radius, and \( \phi \) is the vortex conformity factor. Minimizing \( N_{CG} \) demands placing the impeller as close to the free surface as possible (minimizing \( S \))[cite: 1, 2] or pushing blade tip velocity \( V_{\text{tip}} = 2\pi N R \).
-
-#### 2. Off-Bottom Solid Suspension (\( N_{CS} \))
-Suspension of settling particles requires generating critical axial upward velocity at the vessel base. Saravanan, Patwardhan, and Joshi (1997) modeled this mechanism via packed-bed fluidization at the tank floor:
-
-$$ (\rho_S - \rho_L) g \approx C' \frac{\rho_L V_L^2}{\phi_s d_p \epsilon_L^3} \implies V_L = K_1 \left[ \frac{(\rho_S - \rho_L) d_p}{\rho_L} \right]^{1/2} $$
-
-Equating this fluidization threshold to the secondary liquid circulation velocities generated by a pitched-blade downflow turbine (PBTD) gives the scaling relation for \( N_{CS} \):
-
-$$ N_{CS} = 0.031 \left(\frac{\rho_S - \rho_L}{\rho_L}\right)^{1/2} A^{-0.83} \left(\frac{W}{D}\right)^{-0.314} d_p^{0.17} X^{0.15} \left(\frac{C_3}{D}\right)^{-0.446} D^{-2.42} \left(\frac{C_1}{T}\right)^{0.127} T^{1.35} $$
-
-The engineering trade-off is stark:
-1. **Clearance Conflict:** A high impeller position (low \( S \)) optimizes gas induction but leaves flow near the floor feeble, causing solids to accumulate into stagnant boundary dunes[cite: 1, 2]. Lowering the impeller to sweep the floor raises \( S \), which can suppress gas induction entirely[cite: 1, 2].
-2. **Phase-Interference Degradation:** When \( N > N_{CG} \), aspirated gas forms ventilated cavities behind the blade edges. This lowers the effective local fluid density (\( \overline{\rho} \approx \rho_L \epsilon_L \)) and drops the blade drag coefficient and pumping efficiency[cite: 1, 2]. If the axial downward jet collapses due to gas loading, \( N_{CS} \) shifts upward, and solids drop out of suspension.
-
----
-
-### Parametric Optimization & Geometry Choices
-
-To maximize \( \frac{-d[\text{OH}^-]/dt}{P} \), our design targeted the following parameters:
-
-![Team 3 CAD and Impeller Details](/images/posts/reactor-alchemy/team3-impeller-detail.jpg)
-*Figure 2: Close-up of Team 3's 3D-printed and solvent-welded hollow-shaft gas-inducing impeller.*
-
-* **Aggressive Diameter Ratio (\( D/T = 0.613 \)):** Sized at \( D = 92\text{ mm} \) for \( T = 150\text{ mm} \). Standard GIC designs use \( D/T \approx 0.33 \)[cite: 1, 2]. However, inspecting the suspension power law shows \( N_{CS} \propto D^{-2.42} \). A larger diameter reduces the critical suspension speed from \( >700\text{ RPM} \) down to \( 500\text{ RPM} \). Because shaft power scales strongly with speed (\( P \propto N^3 D^5 \)), dropping the operating speed from 700 to 500 RPM reduces power dissipation by over \( 60\% \).
-* **Low Off-Bottom Clearance (\( C_1 = 20\text{ mm} \)):** Rather than using the suggested \( C_1 = 50\text{ mm} \) (\( C_1/T = 0.33 \)), we dropped the lower blade plane to \( 20\text{ mm} \) (\( C_1/T = 0.133 \)). Following \( N_{CS} \propto (C_1/T)^{0.127} \), this positions the primary axial jet directly against the boundary layer, preventing coarse \( 2\text{--}3\text{ mm} \) particles from forming peripheral rings or central dunes[cite: 1, 3].
-* **Blade Geometry (\( 45^\circ \), \( W/D = 0.3 \)):** Mundale & Joshi (1995) and Saravanan et al. (1997) demonstrated that a \( 45^\circ \) pitch provides the optimal trade-off between axial discharge velocity and radial induction shear[cite: 1, 2]. A blade width ratio of \( W/D = 0.3 \) maximizes the axial root-mean-square turbulence velocity (\( u'_{\text{rms}} \)), which suppresses the hindered settling velocity of the particles without causing the mechanical vibrations typical of 8- or 12-blade systems.
-
----
-
-### Experimental Verification & Benchmark Results
-
-The competition evaluated all impellers under reactive gas absorption: pure \( \text{CO}_2 \) headspace absorption into \( 0.1\text{ M NaOH} \) monitored in real time via an optical/electrochemical pH probe. Power consumption was metered directly at the motor shaft.
-
-![Testing Rig Setup](/images/posts/reactor-alchemy/testing-rig-reactor.jpg)
-*Figure 3: Acrylic test reactor (\( T = 150\text{ mm} \)) with 4 baffles, internal sensor logging, and gas delivery interface.*
-
-| Team | Impeller \( D \) (mm) | \( N_{CG} \) (RPM) | \( N_{CS} \) (RPM) | Clearance \( C_1 \) (mm) | Power \( P \) (W) | Mass Transfer Rate (\( \text{mol}\cdot\text{L}^{-1}\cdot\text{s}^{-1} \)) | Efficiency Metric (\( \frac{\text{mol}}{\text{L}\cdot\text{s}\cdot\text{W}} \)) | Rank |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Team 3 (Ours)** | **92** | **368** | **500** | **20** | **123** | **\( 1.26 \times 10^{-3} \)** | **\( 1.02 \times 10^{-5} \)** | **1st** |
-| **Team 6** | 90 | 420 | 456 | 50 | 87 | \( 4.89 \times 10^{-4} \) | \( 5.62 \times 10^{-6} \) | 2nd |
-| **Team 2** | 89 | 510 | 432 | 50 | 189 | \( 8.45 \times 10^{-4} \) | \( 4.47 \times 10^{-6} \) | 3rd |
-| **Team 1** | 85 | — | — | — | — | Blade structural failure | — | DNF |
-| **Team 4** | 105 | — | — | — | — | Disqualified (Exceeded \( D \)) | — | DQ |
-| **Team 5** | 112 | — | — | — | — | Disqualified (Exceeded \( D \)) | — | DQ |
-
-![Prototyping and Machining](/images/posts/reactor-alchemy/fabrication-tinkerers-lab.jpg)
-*Figure 4: Fabrication in Tinkerers Lab: acrylic machining, blade profiling, and dynamic runout alignment.*
-
-#### Key Performance Dynamics
-* **Onset Margin:** Team 3 achieved early gas induction at \( N_{CG} = 368\text{ RPM} \), ensuring that by the time the drive reached the suspension speed of \( N_{CS} = 500\text{ RPM} \), the reactor operated in a fully developed gassed regime[cite: 2, 3].
-* **Mass Transfer Domination:** Team 6 achieved lower overall power consumption (\( 87\text{ W} \)), but their larger clearance (\( C_1 = 50\text{ mm} \)) and conservative blade suction choked interfacial gas ingestion, resulting in an average mass transfer rate of only \( 4.89 \times 10^{-4}\text{ mol}\cdot\text{L}^{-1}\cdot\text{s}^{-1} \). Team 3 delivered \( 1.26 \times 10^{-3}\text{ mol}\cdot\text{L}^{-1}\cdot\text{s}^{-1} \)—a \( 2.57\times \) enhancement in chemical absorption.
-* **Mechanical Failure Modes:** Teams 4 and 5 designed oversized impellers (\( 105\text{ mm} \) and \( 112\text{ mm} \)), which induced severe shaft wobble and eccentric wall drag. Team 1 experienced blade shear at the hub fillet during solid kick-up, highlighting the importance of structural fillets and solvent bond depth during rapid acceleration in dense slurries[cite: 1, 3].
-
-Understanding transport phenomena allowed us to navigate the trade-off: using the \( D^{-2.42} \) scaling to cut required rotational speeds, positioning the impeller at \( C_1/T = 0.133 \) to sweep settling dunes[cite: 1, 3], and controlling blade cavity drag to maximize gas ingestion without motor power penalties.
+That margin is the honest story, not the absolute rate. Literature is unambiguous that a dedicated second impeller beats a single hollow-shaft design on raw gas-induction rate and dispersion quality -- Saravanan and Joshi's multiple-impeller data shows exactly that gap. We weren't chasing peak \\(Q_G\\). By collapsing induction and suspension onto one blade, we cut shaft power and mechanical complexity, and the competition scored efficiency, not throughput. First place came from picking the metric that rewarded doing less, not doing more -- a fair result, but one that would likely lose on a rig scored purely on absorption rate.
 
 ---
 
