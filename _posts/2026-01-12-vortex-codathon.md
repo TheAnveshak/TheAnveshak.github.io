@@ -37,7 +37,7 @@ In modern engineering workflows, calling an optimization routine or computing a 
 
 ---
 
-### 2. Secrecy by Structure: Elliptic Curves Over \(\mathbb{F}_{23}\) (R2, Q2)
+### 2. Secrecy by Structure: Elliptic Curves Over \\(\mathbb{F}_{23}\\) (R2, Q2)
 
 We tend to assume the physical world is continuous-that numbers stretch indefinitely, signals drift smoothly, and spaces yield to continuous intuition. But real processors truncate, sensors round, and computation on bare metal is stubbornly discrete. 
 
@@ -45,14 +45,14 @@ In **"Big Brother & The Finite Curve,"** Winston and Julia abandon continuous ch
 
 $$\mathcal{E}: y^2 \equiv x^3 - 19x + 84 \pmod{23}$$
 
-They combine their private locations \(P_W\) and \(P_J\) via the curve’s chord-and-tangent group law to yield a meeting coordinate \(P_M = P_W + P_J\). 
+They combine their private locations \\(P_W\\) and \\(P_J\\) via the curve’s chord-and-tangent group law to yield a meeting coordinate \\(P_M = P_W + P_J\\). 
 
 The mathematical point was never the small-scale arithmetic, but the closure of the space:
 * Information from two separate parties merges into a single object.
 * Every operation stays strictly inside the finite set--nothing leaks outside.
-* Knowing \(P_M\) and her own point allows Julia to deduce Winston's location instantly, while an observer seeing only \(P_M\) is left with an unresolved combination.
+* Knowing \\(P_M\\) and her own point allows Julia to deduce Winston's location instantly, while an observer seeing only \\(P_M\\) is left with an unresolved combination.
 
-At \(p = 23\), the world is small enough for Big Brother to tabulate and exhaust every coordinate. But swap \(p = 23\) for a 256-bit prime, and the exact same toy becomes a shield. Forward moves remain trivial; inverting them without a private coordinate becomes computationally impossible. 
+At \\(p = 23\\), the world is small enough for Big Brother to tabulate and exhaust every coordinate. But swap \\(p = 23\\) for a 256-bit prime, and the exact same toy becomes a shield. Forward moves remain trivial; inverting them without a private coordinate becomes computationally impossible. 
 
 This is the intuition behind modern public-key cryptography: not secrecy by hiding, but **secrecy by mathematical structure**--a closed world, a clean group law, and an intractable search space.
 
