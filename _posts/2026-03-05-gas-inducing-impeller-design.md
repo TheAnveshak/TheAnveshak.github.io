@@ -26,10 +26,12 @@ That's a **Gas-Inducing Contactor (GIC)** -- a dead-end system by design.
 
 Depending on how gas and liquid enter and leave the impeller zone, GICs split into three families: **type 11** (gas only, in and out -- a bare hollow pipe), **type 12** (gas in, gas-liquid dispersion out -- most flotation cells), and **type 22** (two-phase in and out, usually with a stator and standpipe around the impeller). Each trades gas-induction rate against shear, dispersion quality, and mechanical complexity.
 
-
 Here's the catch: most gas-inducing impellers are terrible solid suspenders. Sit near the surface to keep the induction path short, and the liquid near the tank floor barely moves -- any catalyst or reactant slurry just sits there. The usual fix is a second impeller lower down, purely for suspension, running on the same shaft.
 
 So we built one. Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai -- design and fabricate a gas-inducing impeller under 90 mm, in a 150 mm tank, that suspends 2–3 mm solids and induces gas, tested against \\(\text{CO}_2\\)–\\(\text{NaOH}\\) absorption.
+
+![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)
+*Figure 4.1: From left to right -- Team 3, Team 4, Team 5, Team 2, Team 6, Team 1.*
 
 Ours held. A 92 mm hollow-shaft impeller with pitched blades, single geometry doing both jobs as above. Gas induction switched on at \\(N_{CG} = 368\\) RPM; solid suspension followed at \\(N_{CS} = 500\\) RPM -- consistent with the standing assumption in this class of contactor that \\(N_{CS} > N_{CG}\\), since a settled bed needs more liquid momentum near the tank floor than a headspace vortex needs to reach the impeller tip. At that suspension speed, absorption ran at \\(1.26\times10^{-3}\ \text{mol L}^{-1}\text{s}^{-1}\\) drawing 123 W, giving a mass-transfer-to-power ratio of \\(1.02\times10^{-5}\ \text{mol L}^{-1}\text{s}^{-1}\text{W}^{-1}\\) -- 1.8\\(\times\\) the next-best team.
 
