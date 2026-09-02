@@ -36,13 +36,10 @@ In modern engineering workflows, calling an optimization routine or computing a 
   * Implement \\(\text{abs}(x)\\) and $\max(a, b)\\) without `<`, `>`, `if`, or libraries.
   * Compute division \\(a / b\\) using only `+`, `-`, and `*` without `/`, `//`, `%`, or branching.  
   * *The Mechanism:* Confronts the difference between imperative execution (bit-level sign extraction, fixed-point subtraction, Newton-Raphson iterations) and declarative trust.
-* **Expensive Evaluations (R1, Q9):** Solvers were handed an Equal-Interval Search Method (EISM) locating a 1D minimum over \\([a, b]\\) and told to minimize runtime:
-  * *The Trap:* Attempting code-level micro-optimizations.
-  * *The Mechanism:* The actual bottleneck in black-box optimization is evaluating \\(f(x)\\). By transitioning from fixed trisection to Golden Section search, one of the interior evaluation points is reused across successive iterations (\\(\tau = \frac{\sqrt{5}-1}{2} \approx 0.618\\)), reducing costly evaluations by nearly half without sacrificing convergence tolerance.
 
 ---
 
-### 2. Secrecy by Structure: Elliptic Curves Over $\mathbb{F}_{23}$ (R2, Q2)
+### 2. Secrecy by Structure: Elliptic Curves Over \\(\mathbb{F}_{23}\\) (R2, Q2)
 
 Set in an Orwellian regime where floating-point drift and continuity are outlawed, "Big Brother & The Finite Curve" forces solvers to compute cryptographic handshakes on a discrete grid:
 
