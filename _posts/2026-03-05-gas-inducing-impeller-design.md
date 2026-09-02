@@ -2,7 +2,7 @@
 title: "Building a Gas-Inducing Impeller (and Winning With It)"
 date: 2026-03-05
 permalink: /posts/2026/03/gas-inducing-impeller-design/
-excerpt: "How to make a stirrer breathe for itself -- and why it still needs a friend to keep solids off the floor."
+excerpt: A dead-end reactor with internal gas recycle, and then the awkward addition of solid suspension. The design sits at the intersection of two very different hydrodynamic requirements.
 tags:
   - Multiphase Transport
   - Fluid Dynamics
