@@ -2,44 +2,40 @@
 
 # TheAnveshak.github.io
 
-Personal site and computational research portfolio.
-
-[![Website](https://img.shields.io/website?url=https%3A%2F%2FTheAnveshak.github.io&up_message=online&down_message=offline&label=site&style=flat-square)](https://TheAnveshak.github.io)
+[![Website](https://img.shields.io/badge/site-TheAnveshak.github.io-blue?style=flat-square)](https://TheAnveshak.github.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 <br/>
 
-<!-- GitHub Contribution Grid -->
-<img src="https://ghchart.rshah.org/216e39/TheAnveshak" alt="TheAnveshak's GitHub Commit Grid" width="100%">
+<!-- Brighter base color (#39d353 or #58a6ff) so single-commit days actually pop -->
+<img src="https://ghchart.rshah.org/39d353/TheAnveshak" alt="TheAnveshak's GitHub Commit Grid" width="100%">
 
 <br/><br/>
 
-<!-- Languages across public repositories -->
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheAnveshak&layout=compact&theme=dark&hide_border=true" alt="Top Languages" />
+<!-- Language distribution across all public repos -->
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheAnveshak&layout=compact&theme=github_dark&hide_border=true" alt="Top Languages" />
 
 </div>
 
 ---
 
-### Scope & Intent
+### What I'm Doing Here
 
-A central archive for computational engineering work, derivations, and numerical experiments. The site tracks:
+I'm an undergrad in Chemical Engineering at ICT Mumbai with a minor in AI/ML. 
 
-* **Scientific Machine Learning & PINNs:** Implementations, convergence behavior, and empirical failure modes across physics-constrained architectures.
-* **Fluid Dynamics & Transport:** Custom solvers, discretization schemes, and CFD test cases.
-* **Research Notes & Codebases:** Technical write-ups, reproducible scripts, and preprints.
+This site is a personal workspace and public log for things I build and derive—mainly scientific computing, fluid mechanics, PINNs, optimization, and numerical solvers. It exists so reproducible code, benchmark notes, and working scripts don't just rot away in local scratch directories.
 
 ---
 
-### Credits & Attribution
+### Credits & Thanks
 
-This site is forked from the [Academic Pages](https://github.com/academicpages/academicpages.github.io) template, an academic portfolio framework maintained by Stuart Geiger and Robert Zupko, originally built on top of Michael Rose's [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) Jekyll theme.
+Built on top of the open-source [Academic Pages](https://github.com/academicpages/academicpages.github.io) template (which detaches from Michael Rose's [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) theme). 
 
-Much credit to the open-source maintainers for providing a clean, math-literate base for scientific writing.
+Big thanks to Stuart Geiger and Robert Zupko for maintaining a Jekyll setup that handles MathJax and scientific write-ups cleanly without bloated front-end overhead.
 
 ---
 
-### Local Preview
+### Local Dev
 
 ```bash
 bundle config set --local path 'vendor/bundle'
