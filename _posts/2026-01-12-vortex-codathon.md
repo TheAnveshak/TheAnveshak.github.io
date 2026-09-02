@@ -33,7 +33,7 @@ In modern engineering workflows, calling an optimization routine or computing a 
 
 * **The 8085 Constraint (R1, Q1):** Solvers were stripped of high-level features and tasked with computing basic operations on primitive terms:
   * Compute \\(\sqrt{x}\\) using only basic arithmetic and loops (no `**`, `pow()`, or math libraries).
-  * Implement \\(\text{abs}(x)\\) and $\max(a, b)\\) without `<`, `>`, `if`, or libraries.
+  * Implement \\(\text{abs}(x)\\) and \\(\max(a, b)\\) without `<`, `>`, `if`, or libraries.
   * Compute division \\(a / b\\) using only `+`, `-`, and `*` without `/`, `//`, `%`, or branching.  
   * *The Mechanism:* Confronts the difference between imperative execution (bit-level sign extraction, fixed-point subtraction, Newton-Raphson iterations) and declarative trust.
 
