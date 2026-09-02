@@ -23,8 +23,6 @@ Most competitive programming contests reward speed-typing and template recall: m
 
 When designing the problem sets for **Vortex Codathon** (Round 1 and Round 2), the objective was different. We wanted problems that test whether a solver actually understands the mathematical machinery they routinely outsource to standard libraries. If you strip away `scipy.optimize`, `numpy.linalg`, floating-point smoothers, and pre-baked abstractions, what remains is the raw structure of the problem.
 
-Here is an architectural walkthrough of the mathematical intuition, structural constraints, and dynamical concepts embedded into these papers.
-
 ---
 
 ### 1. Stripping the Abstraction: Imperative vs. Declarative Knowledge
@@ -44,3 +42,16 @@ In modern engineering workflows, calling an optimization routine or computing a 
 Set in an Orwellian regime where floating-point drift and continuity are outlawed, "Big Brother & The Finite Curve" forces solvers to compute cryptographic handshakes on a discrete grid:
 
 $$\mathcal{E}: y^2 \equiv x^3 - 19x + 84 \pmod{23} \quad$$
+
+* **The Problem:** Winston and Julia coordinate meeting locations by adding points \\(P_W\\) and \\(P_J\\) using the curve group law to yield \\(P_M\\). Solvers had to:
+  1. Determine valid coordinate pairs given the Oracle's output point \\((16, 9\\).
+  2. Compute \\(P_M = P_W + P_J\\) directly when Winston is at \\((3, 10)\\) and Julia is at \\((18, 13)\\).
+* **The Mechanism:** On the real plane \\(\mathbb{R}^2\\), point addition draws a line through \\(P\\) and \\(Q\\), finds the third root on the cubic curve, and reflects across the \\(x\\)-axis. Over \\(\mathbb{F}_{23}\\), continuous lines become modular congruences:
+
+$$m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{23} = (y_2 - y_1)(x_2 - x_1)^{p-2} \pmod{23}$$
+
+$$x_3 = m^2 - x_1 - x_2 \pmod{23}, \quad y_3 = m(x_1 - x_3) - y_1 \pmod{23}$$
+
+At \\(p = 23\\), Big Brother can exhaustively tabulate the entire state space. But the structural principle remains: forward point multiplication is fast, while the inverse (the Discrete Logarithm Problem) becomes intractable when scaled to cryptographic primes.
+
+---
