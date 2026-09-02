@@ -14,4 +14,4 @@ That is probably what drew me towards engineering, and then further towards the 
 I want something where I will have a steep learning curve. At the moment, I am still exploring where that takes me.
 Much of my work so far has moved between CFD, distributed control, scientific machine learning, and chemical engineering research. The subjects have changed; the part I enjoy has remained fairly constant: thinking through a system, figuring out what the mathematics is saying, and then seeing whether computation agrees.
 
-Most of the time, a pen, some paper, and a terminal are enough.
+Most of the time, a pen, some paper, and a terminal are enough to keep me occupied.
