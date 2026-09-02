@@ -1,14 +1,13 @@
 ---
-title: "Designing Vortex Codathon: Embedded Physics & Algorithmic Traps"
+title: "Designing Vortex Codathon: Making Simple Problems Uncomfortable"
 date: 2026-01-12
 permalink: /posts/2026/01/vortex-codathon/
+excerpt: An architectural breakdown of the few problems designed for Vortex 13.0 -- removing a few of the usual conveniences, making simple computations strangely unpleasant, and eventually arriving at process control, game theory, elliptic curves, and particle dynamics.
 tags:
   - algorithmic-design
   - scientific-computing
   - dynamical-systems
 ---
-
-An architectural breakdown of the problem sets designed for Vortex 13.0, testing systems intuition, non-ideal particle dynamics, and numerical constraints without library abstractions.
 
 > **Contest Artifacts & Codebase:**  
 > * **Source Repository:** [`Vortex-ICT-Mumbai/Vortex_13.0/events/prodigy/codathon`](https://github.com/Vortex-ICT-Mumbai/Vortex_13.0/tree/main/events/prodigy/codathon) -- problem statements, scripts, and reference implementations.
