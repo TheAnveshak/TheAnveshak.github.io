@@ -2,7 +2,7 @@
 title: "Building a Gas-Inducing Impeller (and Winning With It)"
 date: 2026-03-05
 permalink: /posts/2026/03/gas-inducing-impeller-design/
-excerpt: A dead-end reactor with internal gas recycle, and then the awkward addition of solid suspension. The design sits at the intersection of two very different hydrodynamic requirements.
+excerpt: A dead-end reactor with internal gas recycle, and then the addition of solids. The design sits at the intersection of two very different hydrodynamic requirements.
 tags:
   - Multiphase Transport
   - Fluid Dynamics
