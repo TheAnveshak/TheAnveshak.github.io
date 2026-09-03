@@ -99,7 +99,7 @@ future                   : false
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               : "custom" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
     shortname            :
   discourse:
@@ -255,6 +255,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      comments: false
   # _teaching
   - scope:
       path: ""
@@ -263,7 +264,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _publications
   - scope:
       path: ""
@@ -272,7 +273,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _portfolio
   - scope:
       path: ""
@@ -281,7 +282,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comment: true
+      comments: false
   # _talks
   - scope:
       path: ""
@@ -290,6 +291,7 @@ defaults:
       layout: talk
       author_profile: true
       share: true
+      comments: false
 
 
 # Sass/SCSS
