@@ -10,10 +10,9 @@ tags:
   - Prototyping
 ---
 
-Say you want to react a gas into a liquid -- \\(\text{H}_2\\) for a reduction, \\(\text{Cl}_2\\) for a chlorination. Bubble it through a sparger, right?
+Say you want to capture or react a gas into a liquid -- \\(\text{H}_2\\) for a reduction, \\(\text{Cl}_2\\) for a chlorination. Bubble it through a sparger, right?
 
 Except phase equilibrium won't let you finish the job. At the interface, \\(y_i P = H_i x_i\\). Unless \\(H_i = 0\\) (never) or the liquid-phase reaction is infinitely fast (Hatta \\(\to \infty\\)), some gas always survives the bubble's rise and escapes into the headspace unreacted. A single pass can't strip a gas to zero.
-
 If that gas is air, vent it and move on. If it's \\(\text{H}_2\\) or \\(\text{Cl}_2\\), venting is money and a hazard leaving through the roof.
 
 So you recycle the unreacted gas. Simplest fix: catch the vent stream and compress it back to the bottom. Except now you own a compressor -- and if the gas is Chlorine or Phosgene, "compressor room" is not somewhere you want your name on the shift roster.
@@ -23,8 +22,6 @@ Fine, skip compressing the gas -- pump the liquid instead, drive a second circul
 Both fixes fail the same way: they treat gas recycle as something bolted onto the reactor. What if the reactor did it to itself? Don't add a pump -- let the impeller be the pump, and let the whole vessel become one closed control volume. Gas leaves the liquid at the top, gets pulled back down through the impeller, and re-enters the same volume it left. Nothing crosses the vessel wall. No external loop, no second machine, no seal to fail. 
 
 That's a **Gas-Inducing Contactor (GIC)** -- a dead-end system by design.
-
-Depending on how gas and liquid enter and leave the impeller zone, GICs split into three families: **type 11** (gas only, in and out -- a bare hollow pipe), **type 12** (gas in, gas-liquid dispersion out -- most flotation cells), and **type 22** (two-phase in and out, usually with a stator and standpipe around the impeller). Each trades gas-induction rate against shear, dispersion quality, and mechanical complexity.
 
 Here's the catch: most gas-inducing impellers are terrible solid suspenders. Sit near the surface to keep the induction path short, and the liquid near the tank floor barely moves -- any catalyst or reactant slurry just sits there. The usual fix is a second impeller lower down, purely for suspension, running on the same shaft.
 
@@ -38,6 +35,7 @@ In a transport phenomena exam, multiphase contactor design is trivial: assume a 
 
 ![All six functioning impellers from Reactor Alchemy](/images/GIC_git/just_GIC_3baldes.jpeg)\\
 *Figure 4.2: The naive additive approach.*
+
 The vertical tubes on the Fracktal bed Figure 4.2 printed by my teammate Waqqas for his own project—served as a reference, though pure hollow pipes have essentially zero solid-suspension capability. Vertical prints snapped along layer lines, supports clogged the hollow bore, and polypropylene warped off the bed until we switched to ABS+.
 
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
