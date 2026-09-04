@@ -40,9 +40,12 @@ In a transport phenomena exam, multiphase contactor design is trivial: assume a 
 *Figure 4.2: The naive additive approach.*
 The vertical tubes on the Fracktal bed Figure 4.2 printed by my teammate Waqqas for his own project—served as a reference, though pure hollow pipes have essentially zero solid-suspension capability. Vertical prints snapped along layer lines, supports clogged the hollow bore, and polypropylene warped off the bed until we switched to ABS+.
 
-![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_blades.jpeg)
-![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_design_side_45.jpeg)\\
-*Figure 4.3: The Machined Acrylic Cavity & the Assembled Prototype.*
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="/images/GIC_git/iteration2_blades.jpeg" alt="Machined Acrylic Cavity" style="width: 49%;">
+  <img src="/images/GIC_git/iteration2_design_side_45.jpeg" alt="Assembled Prototype" style="width: 49%;">
+</div>
+
+*Figure 4.3: The machined acrylic manifold cavity (left) and the assembled four-face collar prototype (right).*
 
 To bypass the internal support problem, our first post-initial build was a laminated three-layer acrylic sandwich: front face, channeled manifold core, and back plate. We built the entire unit, which served as the testbed for our first four-face interlocking hub-a collar that clamped directly onto the hollow Astral CPVC shaft while mechanically socketing four blades at \\(90^\circ\\) to enforce \\(C_4\\) axis symmetry.The assembly held together, but the design carried fatal mechanical penalties. The solid-to-void ratio was terrible; laminating solid acrylic sheets packed excessive dead weight at the outer radius, unnecessarily driving up rotational inertia (\\(I = \sum m_i r_i^2\\) ) and mechanical power draw while forcing the hub to cantilever severe cyclic bending moments. On top of that, hand-machined channels between bonded sheets gave poor dimensional consistency. It proved the interlocking hub kinematics could constrain the hollow axis and blades, but the peripheral mass and fabrication tolerances forced us to ditch the three-layer acrylic stack entirely and move to the lightweight open-trough hybrid shell
 
