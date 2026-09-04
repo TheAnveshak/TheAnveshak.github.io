@@ -78,5 +78,3 @@ That margin is the honest story, not the absolute rate. Literature is unambiguou
 * **Patwardhan, A. W., & Joshi, J. B. (1999).** Design of Gas-Inducing Reactors. *Industrial & Engineering Chemistry Research*, 38(1), 49–80.
   * **Martin, G. Q. (1972).** Gas-Inducing Agitator. *Industrial & Engineering Chemistry Process Design and Development*, 11(3), 397–404.
 * **Evans, G. M., Rielly, C. D., Davidson, J. F., & Carpenter, K. J. (1990).** A Fundamental Study of Gas Inducing Impeller Design. *Institution of Chemical Engineers Symposium Series*, 121, 137–152.
-* **Kumar, A., & Hartland, S. (1985).** Correlations for Prediction of Terminal Falling or Rising Velocity of Droplets. *The Canadian Journal of Chemical Engineering*, 63(3), 368–376.
-* **Schiller, L., & Naumann, A. (1933).** Über die grundlegenden Berechnungen bei der Schwebeaufbereitung. *Zeitschrift des Vereines Deutscher Ingenieure*, 77(12), 318–320.
