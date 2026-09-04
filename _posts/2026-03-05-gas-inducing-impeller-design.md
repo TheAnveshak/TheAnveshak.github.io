@@ -30,8 +30,11 @@ Here's the catch: most gas-inducing impellers are terrible solid suspenders. Sit
 
 So we built one. Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai -- design and fabricate a gas-inducing impeller under 90 mm, in a 150 mm tank, that suspends 2–3 mm solids and induces gas, tested against \\(\text{CO}_2\\)–\\(\text{NaOH}\\) absorption.
 
-![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)
+![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)\\Amar Equipment is an equipment fabrication outfit. They did not care about theoretical bubble drag; they handed us a 150 mm tank and wanted a functional, balanced rotor under 90 mm that would not tear its own shaft apart at 500 RPM while pulling vacuum through hollow blades.  
 *Figure 4.1: From left to right -- Team 3, Team 4, Team 5, Team 2, Team 6, Team 1.*
+
+### The Theory & Fabrication Disconnect
+In a transport phenomena exam, multiphase contactor design is trivial: assume a constant Sauter mean diameter \\(d_{32}\\), pull a single-bubble drag coefficient from Schiller-Naumann or Kumar-Hartland, ignore population balance breakup/coalescence kernels, and plug into an empirical $k_L a$ correlation.  
 
 Fabrication turned out to be the actual competition. Design a blade profile in CAD and it's clean vector math. Print it, and reality intervenes.
 
