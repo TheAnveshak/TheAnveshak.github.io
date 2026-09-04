@@ -34,7 +34,7 @@ So we built one for Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai
 *Figure 4.1: From left to right -- Team 3, Team 4, Team 5, Team 2, Team 6, Team 1.*
 
 ### The Theory & Fabrication Disconnect
-In a transport phenomena exam, multiphase contactor design is trivial: assume a constant Sauter mean diameter \\(d_{32}\\), pull a single-bubble drag coefficient from Schiller-Naumann or Kumar-Hartland, ignore population balance breakup/coalescence kernels, and plug into an empirical $k_L a$ correlation.  
+In a transport phenomena exam, multiphase contactor design is trivial: assume a constant Sauter mean diameter \\(d_{32}\\), pull a single-bubble drag coefficient from Schiller-Naumann or Kumar-Hartland, ignore population balance breakup/coalescence kernels, and plug into an empirical \\(k_L a\\) correlation.  
 
 ![All six functioning impellers from Reactor Alchemy](/images/GIC_git/just_GIC_3baldes.jpeg)\\
 *Figure 4.2: The naive additive approach.*
@@ -42,18 +42,26 @@ The vertical tubes on the Fracktal bed Figure 4.2 printed by my teammate Waqqas 
 
 ![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_blades.jpeg)
 ![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_design_side_45.jpeg)\\
-*Figure 4.2: The Machined Acrylic Cavity & the Assembled Prototype.*
+*Figure 4.3: The Machined Acrylic Cavity & the Assembled Prototype.*
 
-To bypass the internal support problem, our first post-initial build was a laminated three-layer acrylic sandwich: front face, channeled manifold core, and back plate. We built the entire unit, which served as the testbed for our first four-face interlocking hub-a collar that clamped directly onto the hollow Astral CPVC shaft while mechanically socketing four blades at $90^\circ$ to enforce \\(C_4\\) axis symmetry.The assembly held together, but the design carried fatal mechanical penalties. The solid-to-void ratio was terrible; laminating solid acrylic sheets packed excessive dead weight at the outer radius, unnecessarily driving up rotational inertia (\\(I = \sum m_i r_i^2\\) ) and mechanical power draw while forcing the hub to cantilever severe cyclic bending moments. On top of that, hand-machined channels between bonded sheets gave poor dimensional consistency. It proved the interlocking hub kinematics could constrain the hollow axis and blades, but the peripheral mass and fabrication tolerances forced us to ditch the three-layer acrylic stack entirely and move to the lightweight open-trough hybrid shell
+To bypass the internal support problem, our first post-initial build was a laminated three-layer acrylic sandwich: front face, channeled manifold core, and back plate. We built the entire unit, which served as the testbed for our first four-face interlocking hub-a collar that clamped directly onto the hollow Astral CPVC shaft while mechanically socketing four blades at \\(90^\circ\\) to enforce \\(C_4\\) axis symmetry.The assembly held together, but the design carried fatal mechanical penalties. The solid-to-void ratio was terrible; laminating solid acrylic sheets packed excessive dead weight at the outer radius, unnecessarily driving up rotational inertia (\\(I = \sum m_i r_i^2\\) ) and mechanical power draw while forcing the hub to cantilever severe cyclic bending moments. On top of that, hand-machined channels between bonded sheets gave poor dimensional consistency. It proved the interlocking hub kinematics could constrain the hollow axis and blades, but the peripheral mass and fabrication tolerances forced us to ditch the three-layer acrylic stack entirely and move to the lightweight open-trough hybrid shell
 
-Fabrication turned out to be the actual competition. Design a blade profile in CAD and it's clean vector math. Print it, and reality intervenes.
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_iteration_few_blades.jpeg)
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_iteration_view_2.jpeg)\\
+*Figure 4.4: The open-trough structural shell. Printing the leading face directly on the bed eliminated support material.*
 
-We wanted the impeller light, so ABS on FDM. First problem: the printer available couldn't do the hollow internal bore the shaft needed -- support material inside a thin tube doesn't clear, and the holes on the rear face of the blade (where induced gas exits into the bulk) kept printing warped or half-closed. The shaft-to-impeller joint, which has to stay hollow all the way through, came out either blocked or structurally weak.
+We wanted low rotational inertia, which pointed straight back to printing in ABS+. But a closed hollow blade presented the exact same barrier we hit with the vertical tubes: you cannot clear support material out of a 2 mm internal gas bore, and printing horizontal hollow overhangs without support leaves sagged, bridging filament that chokes the suction path. If you try to print exit orifices directly onto the blade face, extrusion pressure distorts them into half-closed slits.
 
-Fix: flip the print orientation. Lay the blade flat with the leading face down, so the "roof" over the shaft joint -- the one hollow passage that actually mattered, printed clean and unsupported. Trade-off: the rear face of the blade, with its exit holes, couldn't print this way at all. So we didn't print it. We CNC-cut a flat acrylic sheet with the holes machined in, and glued it onto the back of the printed part as a cap. Worked better than either method alone would have.
+The fix was a fundamental change in manufacturing logic: do not print a closed volume.
 
-That solved the blade. It didn't solve the impeller staying on-axis. A hollow shaft carrying an off-axis pitched blade wants to wobble and drift under its own weight distribution. We built a hub, a self-locking collar fixed to the shaft, with sockets the blades slotted and locked into, so every blade sat pinned at a fixed radius and angle instead of relying on a single glued joint to hold alignment. 
-Once the geometry was fixed and load-bearing, the last problem was leaks -- every printed seam and glued joint is a path for induced gas to escape before it reaches the liquid. Hot glue, run along every seal line and balanced the last bit of asymmetric weight.
+We flipped the print orientation entirely. We laid the blade flat and printed it as an open structural trough with the leading face down against the bed. This solved two failure modes simultaneously:The high-pressure leading face printed glassy-smooth with continuous $x$-$y$ filament rastering, giving it high flexural rigidity against hydrodynamic drag without layer-boundary weakness.The hollow internal manifold printed clean and completely unsupported as an open cavity.The trade-off was that the rear face couldn't be closed on the printer. So we didn't try. We CNC-cut flat acrylic sheets to match the trough profile, drilled four discrete exit holes along the span, and solvent-welded them onto the back of the printed shell as a cap.
+
+The flat acrylic cap sat directly in the low-pressure wake behind the pitched blade—exploiting the localized pressure drop documented by Martin (1972) and Evans et al. (1990) to maximize induction driving force—while the internal volume stayed completely unobstructed
+
+We replaced butt-glued joints with an indexed central hub collar. The hub was fabricated with four mortise sockets arrayed at precise \\(90^\circ\\) radial offsets, each broached at a \\(45^\circ\\) downflow pitch. The printed blades featured matching tenons that slotted into these sockets and pinned mechanically. We pressed this hub onto a section of rigid, off-the-shelf Astral Class 1 SDR-11 CPVC pipe.
+
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_impeller_Side.jpeg)
+*Figure 4.5: Team 3 **WInning** Prototype.*
 
 Ours held. A 92 mm hollow-shaft impeller with pitched blades, single geometry doing both jobs as above. Gas induction switched on at \\(N_{CG} = 368\\) RPM; solid suspension followed at \\(N_{CS} = 500\\) RPM -- consistent with the standing assumption in this class of contactor that \\(N_{CS} > N_{CG}\\), since a settled bed needs more liquid momentum near the tank floor than a headspace vortex needs to reach the impeller tip. At that suspension speed, absorption ran at \\(1.26\times10^{-3}\ \text{mol L}^{-1}\text{s}^{-1}\\) drawing 123 W, giving a mass-transfer-to-power ratio of \\(1.02\times10^{-5}\ \text{mol L}^{-1}\text{s}^{-1}\text{W}^{-1}\\) -- 1.8\\(\times\\) the next-best team.
 
