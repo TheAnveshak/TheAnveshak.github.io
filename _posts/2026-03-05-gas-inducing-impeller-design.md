@@ -27,10 +27,13 @@ Here's the catch: most gas-inducing impellers are terrible solid suspenders.
 
 So we built one for Reactor Alchemy Competition, hosted by Tinkerers' Lab and IIC ICT Mumbai in partnership with Amar Equipment. AEPL is fundamentally a process equipment design and fabrication company, nobody cared if we could cite drag correlations or calculate a Sauter mean diameter on paper. They handed us a 150 mm acrylic tank and wanted a sub-90 mm rotor that simply worked: induce gas from the headspace, suspend 2–3 mm solids, tested against \\(\text{CO}_2\\)-\\(\text{NaOH}\\) absorption. The work came down to basic mechanical constraints: holding \\(C_4\\)-axis symmetry, pulling leak-tight hollow passages off an FDM printer, and balancing blade mass so the shaft wouldn't whip.
 
-![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)\\
+<div style="text-align: center;">
+  <img src="/images/reactor-alchemy-teams.png" alt="All six functioning impellers from Reactor Alchemy" style="max-height: 220px; width: auto; margin: 0 auto;">
+</div>
+
 *Figure 4.1: From left to right -- Team 3, Team 4, Team 5, Team 2, Team 6, Team 1.*
 
-### The Theory & Fabrication Disconnect
+### Fabrication: In Theory & Disconnect
 
 ![All six functioning impellers from Reactor Alchemy](/images/GIC_git/just_GIC_3baldes.jpeg)\\
 *Figure 4.2: The naive additive approach.*
@@ -72,7 +75,12 @@ We replaced butt-glued joints with an indexed central hub collar.
 The hub was fabricated with four dovetail sockets, each broached at a \\(45^\circ\\) downflow pitch. 
 The printed blades slotted into these sockets. We pressed this hub onto a section of rigid, off-the-shelf Astral Class 1 SDR-11 CPVC pipe.
 
-![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_impeller_Side.jpeg)
+### The Results
+
+<div style="text-align: center;">
+  <img src="/images/GIC_git/main_impeller_Side.jpeg" alt="Team 3 Winning Prototype" style="max-height: 300px; width: auto; margin: 0 auto;">
+</div>
+
 *Figure 4.5: Team 3 **Winning** Prototype.*
 
 Ours held. A 92 mm hollow-shaft impeller with pitched blades. Gas induction switched on at \\(N_{CG} = 368\\) RPM; solid suspension followed at \\(N_{CS} = 500\\) RPM. At that suspension speed, absorption ran at \\(1.26\times10^{-3}\ \text{mol L}^{-1}\text{s}^{-1}\\) drawing \\(123 W\\), giving a mass-transfer-to-power ratio of \\(1.02\times10^{-5}\ \text{mol L}^{-1}\text{s}^{-1}\text{W}^{-1}\\) -- 1.8\\(\times\\) the next-best team.
