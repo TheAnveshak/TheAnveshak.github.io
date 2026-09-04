@@ -41,17 +41,20 @@ In a transport phenomena exam, multiphase contactor design is trivial: assume a 
 The vertical tubes on the Fracktal bed Figure 4.2 printed by my teammate Waqqas for his own project—served as a reference, though pure hollow pipes have essentially zero solid-suspension capability. Vertical prints snapped along layer lines, supports clogged the hollow bore, and polypropylene warped off the bed until we switched to ABS+.
 
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-  <img src="/images/GIC_git/iteration2_blades.jpeg" alt="Machined Acrylic Cavity" style="width: 49%;">
-  <img src="/images/GIC_git/iteration2_design_side_45.jpeg" alt="Assembled Prototype" style="width: 49%;">
+  <img src="/images/GIC_git/iteration2_blades.jpeg" alt="Machined Acrylic Cavity" style="width: 49%; max-height: 280px; object-fit: cover;">
+  <img src="/images/GIC_git/iteration2_design_side_45.jpeg" alt="Assembled Prototype" style="width: 49%; max-height: 280px; object-fit: cover;">
 </div>
 
 *Figure 4.3: The machined acrylic manifold cavity (left) and the assembled four-face collar prototype (right).*
 
 To bypass the internal support problem, our first post-initial build was a laminated three-layer acrylic sandwich: front face, channeled manifold core, and back plate. We built the entire unit, which served as the testbed for our first four-face interlocking hub-a collar that clamped directly onto the hollow Astral CPVC shaft while mechanically socketing four blades at \\(90^\circ\\) to enforce \\(C_4\\) axis symmetry.The assembly held together, but the design carried fatal mechanical penalties. The solid-to-void ratio was terrible; laminating solid acrylic sheets packed excessive dead weight at the outer radius, unnecessarily driving up rotational inertia (\\(I = \sum m_i r_i^2\\) ) and mechanical power draw while forcing the hub to cantilever severe cyclic bending moments. On top of that, hand-machined channels between bonded sheets gave poor dimensional consistency. It proved the interlocking hub kinematics could constrain the hollow axis and blades, but the peripheral mass and fabrication tolerances forced us to ditch the three-layer acrylic stack entirely and move to the lightweight open-trough hybrid shell
 
-![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_iteration_few_blades.jpeg)
-![All six functioning impellers from Reactor Alchemy](/images/GIC_git/main_iteration_view_2.jpeg)\\
-*Figure 4.4: The open-trough structural shell. Printing the leading face directly on the bed eliminated support material.*
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="/images/GIC_git/main_iteration_view_2.jpeg" alt="Open printed trough" style="width: 49%;">
+  <img src="/images/GIC_git/main_iteration_few_blades.jpeg" alt="Blade capping evolution" style="width: 49%;">
+</div>
+
+*Figure 4.4: The open-trough structural shell (left) and the progression of capping the trailing edge with drilled acrylic plates (right).*
 
 We wanted low rotational inertia, which pointed straight back to printing in ABS+. But a closed hollow blade presented the exact same barrier we hit with the vertical tubes: you cannot clear support material out of a 2 mm internal gas bore, and printing horizontal hollow overhangs without support leaves sagged, bridging filament that chokes the suction path. If you try to print exit orifices directly onto the blade face, extrusion pressure distorts them into half-closed slits.
 
