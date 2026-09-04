@@ -28,13 +28,23 @@ Depending on how gas and liquid enter and leave the impeller zone, GICs split in
 
 Here's the catch: most gas-inducing impellers are terrible solid suspenders. Sit near the surface to keep the induction path short, and the liquid near the tank floor barely moves -- any catalyst or reactant slurry just sits there. The usual fix is a second impeller lower down, purely for suspension, running on the same shaft.
 
-So we built one. Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai -- design and fabricate a gas-inducing impeller under 90 mm, in a 150 mm tank, that suspends 2–3 mm solids and induces gas, tested against \\(\text{CO}_2\\)–\\(\text{NaOH}\\) absorption.
+So we built one for Reactor Alchemy, hosted by Tinkerers' Lab and IIC ICT Mumbai in partnership with Amar Equipment. Amar is fundamentally a process equipment design and fabrication outfit, nobody cared if we could cite drag correlations or calculate a Sauter mean diameter on paper. They handed us a 150 mm acrylic tank and wanted a sub-90 mm rotor that simply worked: induce gas from the headspace, suspend 2–3 mm solids, and spin at 500 RPM without shaking the entire rig to pieces, tested against \\(\text{CO}_2\\)-\\(\text{NaOH}\\) absorption. The work came down to basic mechanical constraints: holding \\(C_4\\)-axis symmetry, pulling leak-tight hollow passages off an FDM printer, and balancing blade mass so the shaft wouldn't whip.
 
-![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)\\Amar Equipment is an equipment fabrication outfit. They did not care about theoretical bubble drag; they handed us a 150 mm tank and wanted a functional, balanced rotor under 90 mm that would not tear its own shaft apart at 500 RPM while pulling vacuum through hollow blades.  
+![All six functioning impellers from Reactor Alchemy](/images/reactor-alchemy-teams.png)\\
 *Figure 4.1: From left to right -- Team 3, Team 4, Team 5, Team 2, Team 6, Team 1.*
 
 ### The Theory & Fabrication Disconnect
 In a transport phenomena exam, multiphase contactor design is trivial: assume a constant Sauter mean diameter \\(d_{32}\\), pull a single-bubble drag coefficient from Schiller-Naumann or Kumar-Hartland, ignore population balance breakup/coalescence kernels, and plug into an empirical $k_L a$ correlation.  
+
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/just_GIC_3baldes.jpeg)\\
+*Figure 4.2: The naive additive approach.*
+The vertical tubes on the Fracktal bed Figure 4.2 printed by my teammate Waqqas for his own project—served as a reference, though pure hollow pipes have essentially zero solid-suspension capability. Vertical prints snapped along layer lines, supports clogged the hollow bore, and polypropylene warped off the bed until we switched to ABS+.
+
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_blades.jpeg)
+![All six functioning impellers from Reactor Alchemy](/images/GIC_git/iteration2_design_side_45.jpeg)\\
+*Figure 4.2: The Machined Acrylic Cavity & the Assembled Prototype.*
+
+To bypass the internal support problem, our first post-initial build was a laminated three-layer acrylic sandwich: front face, channeled manifold core, and back plate. We built the entire unit, which served as the testbed for our first four-face interlocking hub-a collar that clamped directly onto the hollow Astral CPVC shaft while mechanically socketing four blades at $90^\circ$ to enforce \\(C_4\\) axis symmetry.The assembly held together, but the design carried fatal mechanical penalties. The solid-to-void ratio was terrible; laminating solid acrylic sheets packed excessive dead weight at the outer radius, unnecessarily driving up rotational inertia (\\(I = \sum m_i r_i^2\\) ) and mechanical power draw while forcing the hub to cantilever severe cyclic bending moments. On top of that, hand-machined channels between bonded sheets gave poor dimensional consistency. It proved the interlocking hub kinematics could constrain the hollow axis and blades, but the peripheral mass and fabrication tolerances forced us to ditch the three-layer acrylic stack entirely and move to the lightweight open-trough hybrid shell
 
 Fabrication turned out to be the actual competition. Design a blade profile in CAD and it's clean vector math. Print it, and reality intervenes.
 
