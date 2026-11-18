@@ -56,6 +56,7 @@ def sqrt(a, x=1.0, n=60):
         x = 0.5*(x + a/x)
     return x
 ```
+One concession, made quietly: a loop is not branch-free either. Compiled, `for i in range(n)` becomes an increment, a compare and a conditional jump (`addl $1`, `cmpl`, `jne` on x86-64; `DCR C`, `JNZ` on the 8085), and Python's `for` keeps the same test inside `range`'s iterator. Loops were allowed anyway. Without them nothing here can be written at all.
 
 ### 1.2 Then Everything Is a Nail
 
@@ -88,7 +89,7 @@ The reciprocals cancel and only `*` and `-` remain. With \\(e_n = 1 - b\,x_n\\),
 
 $$e_{n+1} = e_n^2.$$
 
-So it converges quadratically when \\(0 < x_0 < 2/b\\) and goes to \\(-\infty\\) otherwise. The whole problem is the initial guess. Hardware scales \\(b\\) into \\([0.5, 1]\\) by powers of two and starts at 1. Without branches, \\(x_0 = \varepsilon b\\) works for every \\(\lvert b \rvert < \sqrt{2/\varepsilon}\\) and carries the sign for free, at the cost of a slow doubling phase (about 97 steps for \\(b = 15.2\\) with \\(\varepsilon = 10^{-30}\\)).
+So it converges quadratically when \\(0 < x_0 < 2/b\\) and goes to \\(-\infty\\) otherwise. The whole problem is the initial guess. Hardware scales \\(b\\) into \\([0.5, 1]\\) by powers of two and starts at 1. Without branches, \\(x_0 = \varepsilon b\\) works for every \\(\lvert b \rvert < \sqrt{\frac{2}{\varepsilon}}\\) and carries the sign for free, at the cost of a slow doubling phase (about 97 steps for \\(b = 15.2\\) with \\(\varepsilon = 10^{-30}\\)).
 
 ```python
 def reciprocal(b, eps=1e-30, n=200):
@@ -101,13 +102,13 @@ def divide(a, b):
     return a*reciprocal(b)
 ```
 
-This did not end with the 8085. Intel's Itanium had no divide instruction either: a table-lookup reciprocal (`frcpa`, good to about nine bits) was refined by exactly this iteration using fused multiply-adds ([Cornea et al.](https://www.csc2.ncsu.edu/faculty/efg/wcae/ISCA2004/submissions/cornea.pdf)). In higher dimensions there is no `/` to fall back on at all, and \\(X_{k+1} = X_k(2I - AX_k)\\) (Newton–Schulz) inverts a matrix whenever \\(\rho(I - AX_0) < 1\\). It is the same residual, squared.
+This did not end with the 8085. In higher dimensions there is no `/` to fall back on at all, and \\(X_{k+1} = X_k(2I - AX_k)\\) (Newton–Schulz) inverts a matrix whenever \\(\rho(I - AX_0) < 1\\). It is the same residual, squared.
 
 ---
 
 ## 2. Scientific Computing, Unwrapped (Q2)
 
-Q2 asked for any one of three operations that we usually get as a single library call: a definite integral, a gradient from sampled points, and a model fitted to data. One sentence in the prompt carried the question: *"All design choices are left to you and will be evaluated."*
+Q2 asked for any one of three operations that we usually get as a single library call: a definite integral, a gradient from sampled points, and a model fitted to data, the "real" question: *"All design choices are left to you and will be evaluated."*
 
 ### 2.1 The Integral
 
@@ -120,7 +121,7 @@ while x <= b:
     x += dx
 ```
 
-It works, and it hides two decisions. The first is accuracy. A Riemann sum has error \\(O(h)\\); the trapezoid rule uses the same function evaluations and gets \\(O(h^2)\\); Simpson's rule gets \\(O(h^4)\\). The second is floating point. `0.1` is not representable in binary, so `x += 0.1` drifts: after ten steps `x` is `0.9999999999999999`, the `<=` admits one more point, and the loop runs eleven times instead of ten. Indexing with integers fixes both:
+It works, and it hides two decisions. The first is accuracy, a Riemann sum has error \\(O(h)\\); the trapezoid rule uses the same function evaluations and gets \\(O(h^2)\\); Simpson's rule gets \\(O(h^4)\\). The second is floating point. `0.1` is not representable in binary, so `x += 0.1` drifts: after ten steps `x` is `0.9999999999999999`, the `<=` admits one more point, and the loop runs eleven times instead of ten. Indexing with integers fixes both:
 
 ```python
 def trapz(f, a, b, N=1000):
