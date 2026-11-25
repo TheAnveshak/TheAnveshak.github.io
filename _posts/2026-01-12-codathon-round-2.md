@@ -21,7 +21,7 @@ Round 1 banned the libraries. Round 2 allowed every library and four hours, whic
 
 ## 1. Secrecy by Structure (Q2)
 
-I spent two semesters inside finite fields: Diffie–Hellman, ElGamal, RSA, and eventually elliptic curves. Somewhere along the way I wanted to see if the core idea of public-key cryptography could be handed to a room of chemical engineers without ever saying the word.
+I spent two semesters inside finite fields: Diffie-Hellman, ElGamal, RSA, and eventually elliptic curves. Somewhere along the way I wanted to see if the core idea of public-key cryptography could be handed to a room of chemical engineers without ever saying the word.
 
 It's 1984. Winston and Julia need to agree on a place to meet, inside a network that logs every byte, without ever writing a place down. Big Brother isn't worried. His whole philosophy is one line:
 
@@ -120,25 +120,11 @@ What I hoped people would notice is how much you can read before fitting anythin
 
 This is the mechanism the ten rows were cut from:
 
-![Concentration profiles of the hidden mechanism]({{ base_path }}/images/codathon_r2_q5.png)
+![Concentration profiles of the hidden mechanism](/images/codathon_r2_q5.png)
 
 Get the structure right and the fit is almost an afterthought. Starting every rate constant at 1, least squares walks straight back to the ones I hid, \\(k = (7.00, 3.00, 2.00)\\), with \\(R^2\\) indistinguishable from 1.
 
 Get the structure wrong and the optimizer will still hand you numbers, just numbers for a reactor that doesn't exist. With only ten rows, a few different mechanisms can fit almost equally well. That isn't a flaw in the problem; that's what kinetics actually feels like.
-
----
-
-## 4. Three Answers, One Reactor (Q6)
-
-Three reversible gas-phase reactions, \\(A + B \rightleftharpoons C + D\\), \\(B + C \rightleftharpoons X + Y\\) and \\(A + X \rightleftharpoons Z\\), collapse into three nonlinear equations in \\(C_D, C_X, C_Z\\). Solving them is routine. The catch was solving them three times, from initial guesses of 0, 1 and 10:
-
-| Initial guess | \\(C_D\\) | \\(C_X\\) | \\(C_Z\\) | Physical? |
-|---|---|---|---|---|
-| 0 | 0.705 | 0.178 | 0.374 | yes |
-| 1 | 0.056 | 0.597 | 1.082 | no, \\(C_B, C_C < 0\\) |
-| 10 | 1.070 | \\(-0.323\\) | 1.131 | no, \\(C_A, C_X < 0\\) |
-
-All three satisfy the equations to \\(10^{-10}\\). The algebra can't tell them apart; only the fact that concentrations can't be negative can. A residual near zero proves you found *a* root, not *the* answer.
 
 <!-- Q8 (Beautiful particles): to be written with co-designer's input -->
 
