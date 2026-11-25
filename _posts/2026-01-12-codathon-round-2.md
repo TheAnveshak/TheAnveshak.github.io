@@ -15,31 +15,23 @@ tags:
 
 ---
 
-Round 1 banned the libraries. Round 2 allowed every library and four hours, which turned out to be the harder deal: once scipy will solve anything, the question becomes whether you know what you asked it to solve.
+Round 1 banned the libraries. Round 2 allowed every library and four hours, which turned out to be the harder deal: once `scipy` will solve anything, the question becomes whether you know what you asked it to solve.
 
 ---
 
 ## 1. Secrecy by Structure (Q2)
 
-This problem came out of 2 semesters spent inside finite fields: Diffie-Hellman, ElGamal, RSA, and eventually elliptic curves. The aim was to hand a room of engineers the central idea of public-key cryptography without ever saying the word.
+I spent two semesters inside finite fields: Diffie–Hellman, ElGamal, RSA, and eventually elliptic curves. Somewhere along the way I wanted to see if the core idea of public-key cryptography could be handed to a room of chemical engineers without ever saying the word.
 
-The story was a light coat of paint over that idea. It is **1984**. Winston and Julia need to agree on where to meet without ever writing a place down, inside a network that logs every byte. Big Brother is not worried. He has already listed every point on the curve they use, and his reasoning fits in one line of the paper:
+It's 1984. Winston and Julia need to agree on a place to meet, inside a network that logs every byte, without ever writing a place down. Big Brother isn't worried. His whole philosophy is one line:
 
 > *If the system is finite, it can be known. If it can be known, it can be controlled.*
 
-### 1.1 The Setup
-
-Winston and Julia turn their locations into points on
+So each of them turns their location into a point on
 
 $$E:\; y^2 \equiv x^3 - 19x + 84 \pmod{23},$$
 
-and the meeting place is the sum of the two, \\(P_M = P_W + P_J\\), using the curve's chord-and-tangent rule (elaborately explained in the paper). The curve has 19 points plus a point at infinity, \\(\mathcal{O}\\), which acts as zero. That makes twenty in all, small enough for Big Brother to list.
-
-The question asks you to draw the line on the real curve and then do the arithmetic mod 23. That works because the construction reduces to a few fractions in the coordinates:
-
-$$\lambda = \frac{y_2 - y_1}{x_2 - x_1} \;\;\text{or}\;\; \frac{3x_1^2 + a}{2y_1}, \qquad x_3 = \lambda^2 - x_1 - x_2, \qquad y_3 = \lambda(x_1 - x_3) - y_1,$$
-
-and since 23 is prime, every nonzero number has an inverse, \\(d^{-1} = d^{21}\\). In Round 1 the slash was a loop; here it is an exponent.
+and the meeting place is the sum of the two points, \\(P_M = P_W + P_J\\). "Sum" means the chord-and-tangent rule: draw the line through both points, find where it hits the curve again, flip it. You picture it on the real curve and compute it mod 23. The only step that needs a second thought is the division in the slope, and since 23 is prime, \\(d^{-1} = d^{21}\\). In Round 1 the slash was a loop; here it's an exponent.
 
 ```python
 p, a = 23, -19
@@ -58,17 +50,19 @@ def add(P, Q):
     return (x3, (lam*(x1 - x3) - y1) % p)
 ```
 
-### 1.2 The Two Parts
+The whole curve is 19 points plus a point at infinity that behaves like zero. Twenty points. Big Brother can write them all on one page.
 
-**Part 2** gives both locations, \\((3, 10)\\) and \\((18, 13)\\), and asks for the meeting point. It is \\((14, 20)\\), one call to `add`. Once the locations leak, Big Brother wins.
+### 1.1 Two Directions
 
-**Part 1** gives only the meeting point, \\((16, 9)\\), and asks where they were. There is no unique answer. Every point \\(P\\) on the curve pairs with \\((16, 9) - P\\), so twenty different pairs fit. Julia knows her own point, so she gets Winston's with one subtraction (adding the mirror image \\((x, -y)\\)). An outsider sees one point and twenty possible pasts.
+Forward is trivial. If you know both locations, say \\((3, 10)\\) and \\((18, 13)\\), the meeting point is \\((14, 20)\\), one call to `add`.
 
-That is what the question was built around. Information from two people is merged into one object, in a closed space where every operation stays inside, and it is easy to split only if you already hold one of the pieces.
+Backward is where it gets interesting. Give someone only the meeting point, \\((16, 9)\\), and ask where the two of them were. They can't say. Every point \\(P\\) on the curve pairs with \\((16, 9) - P\\), so all twenty pairs fit equally well. Julia, though, knows her own point, and for her it's one subtraction: \\(P_W = P_M - P_J\\), where minus just means adding the mirror image \\((x, -y)\\).
 
-### 1.3 Making the World Big
+Sit with that for a second. Two people's information is merged into one object. The object lives in a closed world where every operation lands back inside. And pulling it apart is easy only if you already hold one of the pieces. You've seen this before, just not on graph paper: in locks, handshakes, and agreements made in public that only two parties understand.
 
-At \\(p = 23\\), Big Brother lists everything. Real systems keep the same rule, make the world enormous, and hide a count instead of a point: publish \\(Q = kG\\), keep \\(k\\). Computing \\(kG\\) takes about \\(\log_2 k\\) doublings. Getting \\(k\\) back from \\(Q\\) is the elliptic-curve discrete logarithm problem, and the best general attacks need around \\(2^{128}\\) steps on a 256-bit curve. Diffie–Hellman follows directly: Winston sends \\(aG\\), Julia sends \\(bG\\), and both compute \\(abG\\), which Big Brother cannot.
+### 1.2 Bigggg but Finite
+
+At \\(p = 23\\), Big Brother lists everything and always wins. So make the world huge. Real systems keep exactly the same rule and hide a count instead of a point: publish \\(Q = kG\\), keep \\(k\\). Getting from \\(k\\) to \\(Q\\) takes about \\(\log_2 k\\) doublings. Getting from \\(Q\\) back to \\(k\\) on a 256-bit curve takes something like \\(2^{128}\\) steps with the best general attacks anyone knows. After that, Diffie–Hellman is almost a footnote: Winston sends \\(aG\\), Julia sends \\(bG\\), both compute \\(abG\\), and Big Brother, holding only \\(aG\\) and \\(bG\\), is stuck.
 
 ```python
 def mul(k, P):
@@ -84,38 +78,68 @@ A, B = mul(7, G), mul(13, G)
 assert mul(7, B) == mul(13, A)
 ```
 
-The world is still closed, the rule still fits in three lines, and the space is simply too large to list. Not secrecy by hiding, but secrecy by structure.
+Same closed world, same few lines of rule. Not magic, not secrecy by hiding. Secrecy by structure. The world is still finite; it's just too big to list.
 
-If this stays with you, the next step is Hoffstein, Pipher and Silverman, *An Introduction to Mathematical Cryptography* (2014).
+If this one stays with you, Hoffstein, Pipher and Silverman's *An Introduction to Mathematical Cryptography* (2014) is a gentle but serious next step.
 
 ---
 
 ## 2. Firm, Fair, Forgiving (Q1)
 
-The Iterated Prisoner's Dilemma is Robert Axelrod's, and the question said so. It sets seven strategies (cooperators, cheats, and reciprocators in between) in a 200-round round-robin, with one change that matters: every move has a 5% chance of being flipped by accident.
+This one is Robert Axelrod's; I'm only borrowing it. Should I cooperate, or look after myself? Vampire bats share blood with whoever failed to feed that night, but only with bats that return the favour. Arms treaties hold until one side cheats. Group projects, well, you know. The Prisoner's Dilemma squeezes that tension into four numbers, and the iterated version asks what happens when you keep meeting the same people.
 
-**Noise was the question.** Without it, Tit-for-Tat and Grim Trigger behave identically against anyone polite, and the tournament teaches nothing. With noise, a single accident separates the forgiving from the vindictive.
+Seven strategies, everyone against everyone (including themselves), 200 rounds per match. The one twist I cared about: every move has a 5% chance of being flipped by accident. A message misread, a button pressed wrong.
 
-**The payoffs needed one more inequality than the paper stated.** \\(T > R > P > S\\) makes defection tempting, but the iterated game also needs \\(2R > T + S\\). Otherwise two players who take turns exploiting each other beat steady cooperation, and the dilemma dissolves. The standard choice \\((5, 3, 1, 0)\\) satisfies both.
+**Noise is the whole thing.** Without it, Tit-for-Tat and Grim Trigger look identical against anyone polite. With it, a single accident shows you who forgives and who doesn't.
 
-**What noise does to reciprocity** is easiest to see in self-play:
+**A small trap in the payoffs.** \\(T > R > P > S\\) isn't quite enough. You also want \\(2R > T + S\\); otherwise two players taking turns exploiting each other outscore honest cooperation, and the dilemma quietly disappears. The usual \\((5, 3, 1, 0)\\) passes both.
 
-* **Tit-for-Tat vs. itself:** one accidental D starts an echo, \\((C,D) \to (D,C) \to (C,D) \cdots\\), that lasts until another error breaks it. Over a long match the average drifts towards \\((R+T+S+P)/4 = 2.25\\). The simulation gives 2.29.
-* **Win–Stay, Lose–Shift vs. itself:** heals in two moves, \\((C,D) \to (D,D) \to (C,C)\\). The player who was exploited switches; the one who got away with it stays; mutual punishment then makes both switch back. Self-play: 2.79.
-* **Grim Trigger vs. itself:** the first accident starts a war that never ends. Self-play: 1.25.
+It's easiest to see what noise does when a strategy plays a copy of itself:
 
-**The ranking table lies a little,** which is why the paper also asked for a heat map. In a 5% run with Always Cooperate and the Periodic Defector in the field, Grim and Always Defect top the averaged table (about 2.42), simply by feeding on the naive strategies, while scoring worst of all against their own kind. At 2% noise, Win–Stay, Lose–Shift came out on top. There is no best strategy, only a best strategy for a given population. Axelrod's real result was about whom you keep meeting.
+* **Tit-for-Tat:** one accidental D starts an echo, \\((C,D) \to (D,C) \to (C,D) \cdots\\), that runs until another error breaks it. Over a long match it drifts towards \\((R+T+S+P)/4 = 2.25\\); my run gave 2.29.
+* **Win–Stay, Lose–Shift:** heals in two moves, \\((C,D) \to (D,D) \to (C,C)\\). The one who got exploited switches, the one who got away with it stays, and then mutual punishment flips both back. 2.79.
+* **Grim Trigger:** the first accident starts a war that never ends. 1.25.
 
-The paper closed on a line meant to outlast the problem: in a noisy world, the strategies that do well are rarely the most aggressive or the most naive, but the ones that are firm, fair and forgiving. That holds wherever people meet again. For a longer look at the same story, Veritasium's [video on the topic](https://www.youtube.com/watch?v=mScpHTIi-kM) is worth the time.
+**The ranking table lies a little,** which is why a heat map matters. At 5% noise, with Always Cooperate and a Periodic Defector in the field, Grim and Always Defect top the averaged table (about 2.42) simply by feeding on the naive ones, while scoring worst against their own kind. At 2% noise, Win–Stay, Lose–Shift came out on top. There's no best strategy, only a best strategy for the people around you.
+
+In a noisy world, the ones that do well are rarely the most aggressive or the most naive, but the ones that are firm, fair and forgiving. It was never really about this problem; it's about the social decisions you make when you keep meeting the same people. Veritasium has a [great video](https://www.youtube.com/watch?v=mScpHTIi-kM) on the same story.
 
 ---
 
-## 3. Faith in Constraints (Q3)
+## 3. If It Were Obvious, It Wouldn't Be Engineering (Q5)
 
-An underwater vehicle with no map, intermittent contact and little onboard computation has to cross a cave. The question's real content was a single guarantee, offered almost as an aside: *every internal wall is connected to the boundary.* With no free-standing islands to circle forever, keeping one hand on the wall eventually sweeps every corridor. Breadth-first search solves it as well, but it needs a map and memory. The guarantee is what lets local sensing alone succeed. The hint was the algorithm.
+Ammonia oxidation sits at the heart of the Ostwald process. It moves millions of tonnes of material a year, releases enormous heat, destroys expensive catalysts, and quietly prints money. Your commerce friend looks at the overall reaction, sees ammonia go in and nitric acid come out, and smiles. *"This is trivial. Raw material in, product out, margins look great. Scale it. IPO it."*
+
+You, unfortunately, know better. Before a single reactor is sized, before heat removal is designed, before safety margins are set, you don't even know what's happening inside the box. The gas phase is violent, residence times are short, the catalyst degrades, and most intermediates are never observed. And yet the plant must be built.
+
+So this one runs backwards. You get a table of concentrations for a handful of nitrogen species and nothing else. Propose series and parallel rate laws, fit the constants, and show the model reproduces the data. There's no unique answer, only fit quality and whether the logic holds.
+
+The table did come from a mechanism. I wrote one, integrated it, kept every eleventh point, rounded to four decimals, and threw the mechanism away. Ten rows are all that's left of it.
+
+What I hoped people would notice is how much you can read before fitting anything. B forms only in the first step and is never consumed, so its plateau, 3.074, counts exactly how many times that step ran. Each run eats three A, so about 9.22 of the starting 10 went that way, and the remaining 0.78 went down the competing branch. That's the branching ratio straight off the table, with no optimizer involved. A model that misses that number is wrong however small its MSE.
+
+Get the structure right and the fit is almost an afterthought. Starting every rate constant at 1, least squares walks straight back to the ones I hid, \\(k = (7.00, 3.00, 2.00)\\), with \\(R^2\\) indistinguishable from 1:
+
+![Data points and fitted concentration profiles]({{ base_path }}/images/codathon_r2_q5_fit.png)
+
+Get the structure wrong and the optimizer will still hand you numbers, just numbers for a reactor that doesn't exist. With only ten rows, a few different mechanisms can fit almost equally well. That isn't a flaw in the problem; that's what kinetics actually feels like.
+
+---
+
+## 4. Three Answers, One Reactor (Q6)
+
+Three reversible gas-phase reactions, \\(A + B \rightleftharpoons C + D\\), \\(B + C \rightleftharpoons X + Y\\) and \\(A + X \rightleftharpoons Z\\), collapse into three nonlinear equations in \\(C_D, C_X, C_Z\\). Solving them is routine. The catch was solving them three times, from initial guesses of 0, 1 and 10:
+
+| Initial guess | \\(C_D\\) | \\(C_X\\) | \\(C_Z\\) | Physical? |
+|---|---|---|---|---|
+| 0 | 0.705 | 0.178 | 0.374 | yes |
+| 1 | 0.056 | 0.597 | 1.082 | no, \\(C_B, C_C < 0\\) |
+| 10 | 1.070 | \\(-0.323\\) | 1.131 | no, \\(C_A, C_X < 0\\) |
+
+All three satisfy the equations to \\(10^{-10}\\). The algebra can't tell them apart; only the fact that concentrations can't be negative can. A residual near zero proves you found *a* root, not *the* answer.
 
 <!-- Q8 (Beautiful particles): to be written with co-designer's input -->
 
 ---
 
-Round 1 asked whether a loop settles. Round 2 asked what a closed world allows: you can count it, you can control it, and if it is large enough, you can hide in it.
+Round 1 asked whether a loop settles. Round 2 asked what a closed world allows: you can count it, you can control it, and if it's large enough, you can hide in it.
