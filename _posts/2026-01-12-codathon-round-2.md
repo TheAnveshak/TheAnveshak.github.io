@@ -1,22 +1,17 @@
-Round 1 took the tools away. Round 2 handed them back, allowed four hours, and asked what a solver would build with them. The answers covered curves, games, mazes and reactors. Two of the eight problems carried most of the weight.
-
 ---
 title: "CODATHON R2: Finite Is Not Small"
 date: 2026-01-12
-permalink: /posts/2026/11/codathon-round-2/
+permalink: /posts/2026/01/vortex-codathon/
 excerpt: Notes on Round 2 of Vortex Codathon 13.0 -- point addition on an elliptic curve over a finite prime field, a prisoner's dilemma tournament with noise, and an equilibrium problem.
 tags:
   - cryptography
   - scientific-computing
+  - dynamical-systems
 ---
 
-> **Round 2 Artifacts:**  
-> * **Problem Paper:** [Round 2 PDF]({{ base_path }}/files/Codathon_R2.pdf)
-> * **Source Repository:** [`Vortex-ICT-Mumbai/Vortex_13.0/events/prodigy/codathon`](https://github.com/Vortex-ICT-Mumbai/Vortex_13.0/tree/main/events/prodigy/codathon)
-> * **Previously:** [Designing Vortex Codathon](/posts/2026-01-12-vortex-codathon.md)
-
-<!-- MORE BUTTON: Anything below this line only shows when the user clicks the post -->
-<!--more-->
+> **Contest Artifacts & Codebase:**  
+> * **Source Repository:** [`Vortex-ICT-Mumbai/Vortex_13.0/events/prodigy/codathon`](https://github.com/Vortex-ICT-Mumbai/Vortex_13.0/tree/main/events/prodigy/codathon) -- problem statements, scripts, and reference implementations.
+> * **Problem Papers:** | [Round 1 PDF]({{ base_path }}/files/Codathon_R1.pdf) | [Round 2 PDF]({{ base_path }}/files/Codathon_R2.pdf)
 
 ---
 
