@@ -118,9 +118,11 @@ The table did come from a mechanism. I wrote one, integrated it, kept every elev
 
 What I hoped people would notice is how much you can read before fitting anything. B forms only in the first step and is never consumed, so its plateau, 3.074, counts exactly how many times that step ran. Each run eats three A, so about 9.22 of the starting 10 went that way, and the remaining 0.78 went down the competing branch. That's the branching ratio straight off the table, with no optimizer involved. A model that misses that number is wrong however small its MSE.
 
-Get the structure right and the fit is almost an afterthought. Starting every rate constant at 1, least squares walks straight back to the ones I hid, \\(k = (7.00, 3.00, 2.00)\\), with \\(R^2\\) indistinguishable from 1:
+This is the mechanism the ten rows were cut from:
 
-![Data points and fitted concentration profiles]({{ base_path }}/images/codathon_r2_q5_fit.png)
+![Concentration profiles of the hidden mechanism]({{ base_path }}/images/codathon_r2_q5.png)
+
+Get the structure right and the fit is almost an afterthought. Starting every rate constant at 1, least squares walks straight back to the ones I hid, \\(k = (7.00, 3.00, 2.00)\\), with \\(R^2\\) indistinguishable from 1.
 
 Get the structure wrong and the optimizer will still hand you numbers, just numbers for a reactor that doesn't exist. With only ten rows, a few different mechanisms can fit almost equally well. That isn't a flaw in the problem; that's what kinetics actually feels like.
 
