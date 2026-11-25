@@ -1,6 +1,6 @@
 ---
 title: "Designing Vortex Codathon: Making Simple Problems Uncomfortable"
-date: 2026-01-12
+date: 2026-01-08
 permalink: /posts/2026/01/vortex-codathon/
 excerpt: An architectural breakdown of the few problems designed for Vortex 13.0 -- removing a few of the usual conveniences, making simple computations strangely unpleasant, and eventually arriving at process control, game theory, elliptic curves, and particle dynamics.
 tags:
