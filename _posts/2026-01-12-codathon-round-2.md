@@ -1,55 +1,50 @@
+Round 1 took the tools away. Round 2 handed them back, allowed four hours, and asked what a solver would build with them. The answers covered curves, games, mazes and reactors. Two of the eight problems carried most of the weight.
+
 ---
-title: "Finite Is Not Small"
-date: 2026-11-25
+title: "CODATHON R2: Finite Is Not Small"
+date: 2026-01-12
 permalink: /posts/2026/11/codathon-round-2/
-excerpt: Notes on Round 2 of Vortex Codathon 13.0 -- an elliptic curve over a field of twenty-three numbers, a noisy tournament of cooperators and cheats, and a maze that only needed faith in its own guarantees.
+excerpt: Notes on Round 2 of Vortex Codathon 13.0 -- point addition on an elliptic curve over a finite prime field, a prisoner's dilemma tournament with noise, and an equilibrium problem.
 tags:
   - cryptography
-  - game-theory
   - scientific-computing
 ---
 
 > **Round 2 Artifacts:**  
 > * **Problem Paper:** [Round 2 PDF]({{ base_path }}/files/Codathon_R2.pdf)
 > * **Source Repository:** [`Vortex-ICT-Mumbai/Vortex_13.0/events/prodigy/codathon`](https://github.com/Vortex-ICT-Mumbai/Vortex_13.0/tree/main/events/prodigy/codathon)
-> * **Previously:** [The Slash Was Always a Loop](/posts/2026/11/codathon-round-1/) (Round 1) · [Designing Vortex Codathon](/posts/2026/01/vortex-codathon/)
+> * **Previously:** [Designing Vortex Codathon](/posts/2026-01-12-vortex-codathon.md)
 
 <!-- MORE BUTTON: Anything below this line only shows when the user clicks the post -->
 <!--more-->
 
 ---
 
-Round 1 took the tools away. Round 2 handed them back, allowed four hours, and asked what a solver would build with them. The answers covered curves, games, mazes and reactors. Two of the eight problems carried most of the weight.
+Round 1 banned the libraries. Round 2 allowed every library and four hours, which turned out to be the harder deal: once scipy will solve anything, the question becomes whether you know what you asked it to solve.
 
 ---
 
 ## 1. Secrecy by Structure (Q2)
 
-This problem came out of a summer spent inside finite fields: Diffie–Hellman, ElGamal, RSA, and eventually elliptic curves. The aim was to hand a room of engineers the central idea of public-key cryptography without ever saying the word.
+This problem came out of 2 semesters spent inside finite fields: Diffie-Hellman, ElGamal, RSA, and eventually elliptic curves. The aim was to hand a room of engineers the central idea of public-key cryptography without ever saying the word.
 
-The story was a light coat of paint over that idea. It is 1984. Winston and Julia hide messages from Big Brother by stamping "69" into the logs, until the suits notice that \\(69 = 3 \times 23\\). The joke already contains the prime the whole problem lives on. Big Brother's philosophy fits in one line of the paper:
+The story was a light coat of paint over that idea. It is **1984**. Winston and Julia need to agree on where to meet without ever writing a place down, inside a network that logs every byte. Big Brother is not worried. He has already listed every point on the curve they use, and his reasoning fits in one line of the paper:
 
 > *If the system is finite, it can be known. If it can be known, it can be controlled.*
 
-The rest of the question tests that sentence and then breaks it.
+### 1.1 The Setup
 
-### 1.1 A World of Twenty Points
-
-Everything happens on
+Winston and Julia turn their locations into points on
 
 $$E:\; y^2 \equiv x^3 - 19x + 84 \pmod{23},$$
 
-which over \\(\mathbb{F}_{23}\\) is \\(y^2 = x^3 + 4x + 15\\). It has 19 points with coordinates plus one point at infinity, \\(\mathcal{O}\\), which acts as zero: 20 points in all. That falls inside Hasse's bound, \\(\lvert \#E - (p+1) \rvert \leq 2\sqrt{p}\\), which allows anything from 15 to 33 for \\(p = 23\\). The group happens to be cyclic: \\((3, 10)\\) on its own generates all twenty.
+and the meeting place is the sum of the two, \\(P_M = P_W + P_J\\), using the curve's chord-and-tangent rule (elaborately explained in the paper). The curve has 19 points plus a point at infinity, \\(\mathcal{O}\\), which acts as zero. That makes twenty in all, small enough for Big Brother to list.
 
-### 1.2 Draw in \\(\mathbb{R}^2\\), Compute in \\(\mathbb{F}_{23}\\)
+The question asks you to draw the line on the real curve and then do the arithmetic mod 23. That works because the construction reduces to a few fractions in the coordinates:
 
-The paper insisted on one apparent inconsistency: picture the chord-and-tangent rule on the real curve, but evaluate it on the grid. Nothing breaks, because the geometric rule boils down to rational functions of the coordinates:
+$$\lambda = \frac{y_2 - y_1}{x_2 - x_1} \;\;\text{or}\;\; \frac{3x_1^2 + a}{2y_1}, \qquad x_3 = \lambda^2 - x_1 - x_2, \qquad y_3 = \lambda(x_1 - x_3) - y_1,$$
 
-$$\lambda = \frac{y_2 - y_1}{x_2 - x_1} \;\;\text{or}\;\; \frac{3x_1^2 + a}{2y_1}, \qquad x_3 = \lambda^2 - x_1 - x_2, \qquad y_3 = \lambda(x_1 - x_3) - y_1.$$
-
-Only \\(+, -, \times, \div\\) appear, so the formulas hold in any field. The one place a field earns its name is the division. Because 23 is prime, every nonzero \\(d\\) has an inverse, \\(d^{-1} = d^{p-2}\\) (Fermat). In Round 1 the slash was a loop; here it is an exponent.
-
-Primality is not decoration. Modulo a composite \\(n\\), some denominators have no inverse, and the rule fails. Lenstra turned that failure into a factoring algorithm: a slope that refuses to invert hands you a factor of \\(n\\).
+and since 23 is prime, every nonzero number has an inverse, \\(d^{-1} = d^{21}\\). In Round 1 the slash was a loop; here it is an exponent.
 
 ```python
 p, a = 23, -19
@@ -68,21 +63,17 @@ def add(P, Q):
     return (x3, (lam*(x1 - x3) - y1) % p)
 ```
 
-### 1.3 The Two Parts, and What They Were For
+### 1.2 The Two Parts
 
-**Part 2** is mechanical: \\((3, 10) + (18, 13) = (14, 20)\\). If Winston and Julia's coordinates leak, Big Brother finds the meeting point in one line.
+**Part 2** gives both locations, \\((3, 10)\\) and \\((18, 13)\\), and asks for the meeting point. It is \\((14, 20)\\), one call to `add`. Once the locations leak, Big Brother wins.
 
-**Part 1** gives the oracle's output, \\((16, 9)\\), and asks where the two of them were. It has no single answer, and that is the answer. For *every* point \\(P\\) on the curve, \\(P + \big((16,9) - P\big) = (16, 9)\\), so there are exactly twenty equally valid stories. Julia, knowing her own point, recovers Winston's in one subtraction: \\(P_W = P_M - P_J\\), where subtracting means adding the mirror image \\((x, -y)\\). Anyone outside sees one point and twenty possible pasts.
+**Part 1** gives only the meeting point, \\((16, 9)\\), and asks where they were. There is no unique answer. Every point \\(P\\) on the curve pairs with \\((16, 9) - P\\), so twenty different pairs fit. Julia knows her own point, so she gets Winston's with one subtraction (adding the mirror image \\((x, -y)\\)). An outsider sees one point and twenty possible pasts.
 
-That was the closing thought the paper left on the page: information from two people merged into one object, living in a closed space, where every operation stays inside, and which is easy to separate only if you already hold one of the parts.
+That is what the question was built around. Information from two people is merged into one object, in a closed space where every operation stays inside, and it is easy to split only if you already hold one of the pieces.
 
-### 1.4 From Toy to Shield
+### 1.3 Making the World Big
 
-The toy is honest about one thing and quiet about another. Adding a secret point is a one-time pad on a group. It hides perfectly because of *ambiguity*, not difficulty, and collapses the moment one part leaks. Real systems hide a *count* instead of a point:
-
-$$Q = kG = \underbrace{G + G + \cdots + G}_{k \text{ times}}.$$
-
-Going forward is cheap: double-and-add reaches \\(kG\\) in about \\(\log_2 k\\) steps. Going backward, recovering \\(k\\) from \\(Q\\), is the elliptic-curve discrete logarithm problem. The best generic attacks take about \\(\sqrt{n}\\) group operations, so a 256-bit curve resists at roughly \\(2^{128}\\). Diffie–Hellman is then three lines: Winston publishes \\(aG\\), Julia publishes \\(bG\\), and both compute \\(abG\\), which Big Brother cannot form from what he sees.
+At \\(p = 23\\), Big Brother lists everything. Real systems keep the same rule, make the world enormous, and hide a count instead of a point: publish \\(Q = kG\\), keep \\(k\\). Computing \\(kG\\) takes about \\(\log_2 k\\) doublings. Getting \\(k\\) back from \\(Q\\) is the elliptic-curve discrete logarithm problem, and the best general attacks need around \\(2^{128}\\) steps on a 256-bit curve. Diffie–Hellman follows directly: Winston sends \\(aG\\), Julia sends \\(bG\\), and both compute \\(abG\\), which Big Brother cannot.
 
 ```python
 def mul(k, P):
@@ -98,9 +89,9 @@ A, B = mul(7, G), mul(13, G)
 assert mul(7, B) == mul(13, A)
 ```
 
-At \\(p = 23\\), Big Brother lists all twenty points and always wins. At 256 bits, the world is still finite, still closed, and still obeys the same three-line rule. It is simply too large to list. Not secrecy by hiding, but secrecy by structure. That is also why a 256-bit curve does the work of a 3072-bit RSA modulus.
+The world is still closed, the rule still fits in three lines, and the space is simply too large to list. Not secrecy by hiding, but secrecy by structure.
 
-For anyone the feeling stays with, the paper pointed to Hoffstein, Pipher and Silverman, *An Introduction to Mathematical Cryptography* (2014).
+If this stays with you, the next step is Hoffstein, Pipher and Silverman, *An Introduction to Mathematical Cryptography* (2014).
 
 ---
 
